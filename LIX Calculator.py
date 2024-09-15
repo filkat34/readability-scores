@@ -7,6 +7,8 @@ def estPonctuationForte(caractere):
 
 
 #Formatage ponctuation du texte pour simplifier l'identification des phrases
+#Evite que les points de suspensions soient comptabilisés comme trois points
+#Supprime les points qui ne marquent pas la fin d'une phrase mais une abréviation
 def formatagePonctuation(texte):
     texte = texte.replace('...', '.')
     texte = texte.replace('’', "'")
