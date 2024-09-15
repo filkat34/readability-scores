@@ -25,14 +25,14 @@ def nbMots(texte):
     return len(listeMots)
 
 
-# Compteur de mots de 6 lettres ou plus
+# Compteur de mots de plus de 6 lettres
 def nbMotsLongs(texte):
     texte = supprimePonctuation(texte)
     texte = texte.replace('\n', ' ').replace('\r', '')
     listeMots = str.split(texte)
     motsLongs = 0
     for mot in range(len(listeMots)):
-        if len(listeMots[mot]) >= 6:
+        if len(listeMots[mot]) > 6:
             motsLongs += 1
     return motsLongs
 
