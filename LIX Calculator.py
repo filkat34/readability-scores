@@ -94,6 +94,7 @@ print("Nombre de mots longs :", nbMotsLongs(texte))
 print("")
 indiceLix = calculLIX(nbMots(texte), nbPhrases(texte), nbMotsLongs(texte))
 print("L'indice de lisibilité LIX est de : ", indiceLix)
+print("")
 if indiceLix > 50 :
     print("Ce texte est très difficile à lire.")
 elif indiceLix >= 40:
@@ -104,5 +105,5 @@ elif indiceLix >= 25:
     print("Ce texte est facile à lire.")
 else:
     print("Ce texte très facile à lire.")
-
+print("")
 input("Appuyez sur ENTREE pour terminer")
