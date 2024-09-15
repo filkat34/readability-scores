@@ -1,6 +1,6 @@
 L'indice de lisibilité LIX est une mesure développée par le linguiste suédois Carl-Hugo Björnsson en 1968. Il est calculé en additionnant le nombre moyen de mots par phrase au pourcentage de mots de plus de six lettres dans un texte donné. La formule est la suivante : 
 
-LIX = (nombre de mots/nombre de phrases) + (nombre de mots de plus de 6 lettres/nombre de mots) * 100
+LIX = (nombre de mots/nombre de phrases) + (nombre de mots de plus de six lettres/nombre de mots) * 100
 
 Plus l'indice LIX est élevé, plus le texte est difficile à lire.
 
