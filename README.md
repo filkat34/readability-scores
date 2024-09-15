@@ -1,4 +1,4 @@
-L'indice de lisibilité LIX est une mesure développée par le linguiste suédois Carl-Hugo Björnsson en 1968. Il est calculé par la formule suivante : 
+L'indice de lisibilité LIX est une mesure développée par le linguiste suédois Carl-Hugo Björnsson en 1968. Il est calculé par l'addition du nombre moyen de mots par phrase et du pourcentage de mots de plus de six syllabes. La formule est la suivante : 
 
 LIX = (nombre de mots/nombre de phrases) + (nombre de mots de plus de 6 syllabes/nombre de mots) * 100
 
