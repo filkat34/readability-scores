@@ -1,13 +1,13 @@
-L'indice de lisibilité LIX est une mesure développée par le linguiste suédois Carl-Hugo Björnsson en 1968. Il est calculé par l'addition du nombre moyen de mots par phrase et du pourcentage de mots de plus de six syllabes. La formule est la suivante : 
+L'indice de lisibilité LIX est une mesure développée par le linguiste suédois Carl-Hugo Björnsson en 1968. Il est calculé en additionnant le nombre moyen de mots par phrase au pourcentage de mots de plus de six lettres dans un texte donné. La formule est la suivante : 
 
-LIX = (nombre de mots/nombre de phrases) + (nombre de mots de plus de 6 syllabes/nombre de mots) * 100
+LIX = (nombre de mots/nombre de phrases) + (nombre de mots de plus de 6 lettres/nombre de mots) * 100
 
 Plus l'indice LIX est élevé, plus le texte est difficile à lire.
 
-Ce programme est conçu spécifiquement pour les textes français. Il accepte en saisie utilisateur le chemin d'accès du fichier texte (.txt) dont on souhaite calculer l'indice LIX et affiche ensuite les éléments suivants :
+Ce programme est conçu spécifiquement pour les textes français. Il accepte en saisie utilisateur le chemin d'accès du fichier texte (.txt) dont on souhaite calculer l'indice LIX et affiche en sortie les éléments suivants :
 
 - Nombre de phrases
 - Nombre de mots
-- Nombre de mots longs
+- Nombre de mots longs (>6 lettres)
 - Indice de lisibilité LIX
 - Une interprétation sommaire de cet indice : indice > 60 : Texte très difficile ; indice >= 50 : Texte difficile ; indice >= 40 : Texte de difficulté moyenne ; indice >= 30 : Texte facile ; indice < 30 : Texte très facile.
