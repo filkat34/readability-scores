@@ -104,4 +104,3 @@ elif indiceLix >= 30:
     print("Texte facile.")
 else:
     print("Texte très facile.")
-input("Appuyez sur ENTREE pour terminer.")
