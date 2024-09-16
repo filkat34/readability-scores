@@ -1,3 +1,5 @@
+#Programme : calculateur de score de lisibilité LIX pour textes français
+
 #Identificateur de ponctuation forte
 def estPonctuationForte(caractere):
     if caractere in ['.', '?', '!']:
