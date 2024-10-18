@@ -85,10 +85,31 @@ def calculLIX(nbMots,nbPhrases,nbMotsLongs):
     indiceLix = (nbMots/nbPhrases)+(100*(nbMotsLongs/nbMots))
     return indiceLix
 
+#Niveau de difficulté
+
+def difficulte(indiceLix):
+    if indiceLix > 60 :
+        return("Très difficile.")
+    elif indiceLix >= 50:
+        return("Difficile.")
+    elif indiceLix >= 40:
+        return("Difficulté moyenne.")
+    elif indiceLix >= 30:
+        return("Facile.")
+    else:
+        return("Très facile.")
 
 #Programme
-cheminAcces = input("Saisissez le chemin d'accès du fichier texte (.txt) : ")
-file = open(cheminAcces, encoding="utf8", errors='ignore')
+from tkinter import filedialog
+import tkinter as tk
+
+filename = filedialog.askopenfilename(
+    filetypes=(
+        ("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),
+        ("PDF Files", ".pdf")
+    )
+)
+file = open(filename, encoding="utf8", errors='ignore')
 texte = file.read()
 file.close()
 print("Nombre de phrases : ", nbPhrases(texte))
@@ -96,13 +117,4 @@ print("Nombre de mots : ", nbMots(texte))
 print("Nombre de mots longs :", nbMotsLongs(texte))
 indiceLix = calculLIX(nbMots(texte), nbPhrases(texte), nbMotsLongs(texte))
 print("L'indice de lisibilité LIX est de : ", indiceLix)
-if indiceLix > 60 :
-    print("Texte très difficile.")
-elif indiceLix >= 50:
-    print("Texte difficile.")
-elif indiceLix >= 40:
-    print("Texte de difficulté moyenne.")
-elif indiceLix >= 30:
-    print("Texte facile.")
-else:
-    print("Texte très facile.")
+print("Niveau de difficulté :", difficulte(indiceLix))
