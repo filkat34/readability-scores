@@ -73,8 +73,8 @@ def supprimePonctuation(texte):
     texte = texte.replace("\"", "")
     texte = texte.replace("(", "")
     texte = texte.replace(")", "")
-    texte = texte.replace("\[", "")
-    texte = texte.replace("\]", "")
+    texte = texte.replace("[", "")
+    texte = texte.replace("]", "")
     texte = texte.replace("  ", " ")
     texte = texte.replace("   ", " ")
     return texte
