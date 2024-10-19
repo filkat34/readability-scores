@@ -103,6 +103,10 @@ def difficulte(indiceLix):
 from tkinter import filedialog
 import tkinter as tk
 
+from ctypes import windll
+windll.shcore.SetProcessDpiAwareness(1)
+
+
 filename = filedialog.askopenfilename(
     filetypes=(
         ("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),
