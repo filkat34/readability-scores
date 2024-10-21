@@ -3,6 +3,7 @@
 # auteur : Filippos
 
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 
 # Fonctions
@@ -78,7 +79,7 @@ root.title("Calculateur d'indice de lisibilité LIX")
 root.minsize(500,200)
 root.maxsize(600,300)
 root.geometry("500x200+0+0")
-userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.",
+userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.\n\nPatientez...",
                      padx= 10, pady= 10, font=("Monospace", 12))
 userInput.pack()
 
@@ -89,14 +90,13 @@ def button_clicked():
 def window_results():
     resultats = tk.Toplevel()
     resultats.title(f"{filename}")
-    resultats.minsize(550,350)
+    resultats.minsize(300,300)
     resultats.maxsize(1200,400)
-    resultats.geometry("550x350+550+0")
+    resultats.geometry("300x300+550+0")
     resultats.config(width=500, height=600)
-    results1 = tk.Label(resultats, text=affichageResultats(),
+    resultatsDetail = tk.Label(resultats, text=affichageResultats(),
                         padx= 20, pady= 20, justify="left", font=("Monospace", 12))
-    results1.pack(anchor="w")
-    resultats.focus()
+    resultatsDetail.pack(anchor="w")
     button = tk.Button(resultats, 
                    text="Quitter", 
                    command=resultats.destroy,
@@ -145,4 +145,5 @@ button = tk.Button(root,
                    width=10,
                    wraplength=100)
 button.pack(padx=10, pady=15)
+
 root.mainloop()
