@@ -2,6 +2,7 @@
 # but : calculer l'indice de lisibilité LIX d'un texte français
 # auteur : Filippos
 
+import tkinter as tk
 from tkinter import filedialog
 
 # Fonctions
@@ -49,21 +50,99 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     return scoreLix, difficulte
 
 def programmeLIX():
+    global filename
     filename = filedialog.askopenfilename(
-    filetypes=(
-        ("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),
-        ("PDF Files", ".pdf")))
+    filetypes=(("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),("PDF Files", ".pdf")))
     file = open(filename, encoding="utf8", errors='ignore')
     texte = file.read()
     file.close()
-    Mots = compteurMots(texte)[0]
-    MotsLongs = compteurMots(texte)[1]
-    Phrases = nbPhrases(texte)
-    Lix = scoreLix(compteurMots(texte)[0], compteurMots(texte)[1], nbPhrases(texte))[0]
+    global mots
+    mots = compteurMots(texte)[0]
+    global motsLongs
+    motsLongs = compteurMots(texte)[1]
+    global phrases
+    phrases = nbPhrases(texte)
+    global lix
+    lix = scoreLix(compteurMots(texte)[0], compteurMots(texte)[1], nbPhrases(texte))[0]
+    global difficulte
     difficulte = scoreLix(compteurMots(texte)[0], compteurMots(texte)[1], nbPhrases(texte))[1]
-    return print (f"Nombre de mots : {Mots}\nNombre de mots longs : {MotsLongs}\nNombre de phrases : {Phrases}\nScore LIX : {Lix}\nDifficulté : {difficulte}")
+    return filename,mots, motsLongs, phrases, lix, difficulte
 
+def affichageResultats():
+    return f"Nombre de mots : {mots}\n\nNombre de mots longs : {motsLongs}\n\nNombre de phrases : {phrases}\n\nScore LIX : {lix}\n\nDifficulté : {difficulte}"
 
-# Programme
+# Interface du programme
 
-programmeLIX()
+root = tk.Tk()
+root.title("Calculateur d'indice de lisibilité LIX")
+root.minsize(500,200)
+root.maxsize(600,300)
+root.geometry("500x200+0+0")
+userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.",
+                     padx= 10, pady= 10, font=("Monospace", 12))
+userInput.pack()
+
+def button_clicked():
+    programmeLIX()
+    window_results()
+
+def window_results():
+    resultats = tk.Toplevel()
+    resultats.title(f"{filename}")
+    resultats.minsize(550,350)
+    resultats.maxsize(1200,400)
+    resultats.geometry("550x350+550+0")
+    resultats.config(width=500, height=600)
+    results1 = tk.Label(resultats, text=affichageResultats(),
+                        padx= 20, pady= 20, justify="left", font=("Monospace", 12))
+    results1.pack(anchor="w")
+    resultats.focus()
+    button = tk.Button(resultats, 
+                   text="Quitter", 
+                   command=resultats.destroy,
+                   activebackground="grey", 
+                   activeforeground="white",
+                   anchor="center",
+                   bd=3,
+                   bg="lightgray",
+                   cursor="hand2",
+                   disabledforeground="gray",
+                   fg="black",
+                   font=("Monospace", 11),
+                   height=1,
+                   highlightbackground="black",
+                   highlightcolor="green",
+                   highlightthickness=2,
+                   justify="center",
+                   overrelief="raised",
+                   padx=5,
+                   pady=5,
+                   width=10,
+                   wraplength=100)
+    button.pack(padx=10, pady=15)
+    root.mainloop()
+    
+button = tk.Button(root, 
+                   text="Ajouter", 
+                   command=lambda:button_clicked(),
+                   activebackground="grey", 
+                   activeforeground="white",
+                   anchor="center",
+                   bd=3,
+                   bg="lightgray",
+                   cursor="hand2",
+                   disabledforeground="gray",
+                   fg="black",
+                   font=("Monospace", 11),
+                   height=1,
+                   highlightbackground="black",
+                   highlightcolor="green",
+                   highlightthickness=2,
+                   justify="center",
+                   overrelief="raised",
+                   padx=5,
+                   pady=5,
+                   width=10,
+                   wraplength=100)
+button.pack(padx=10, pady=15)
+root.mainloop()
