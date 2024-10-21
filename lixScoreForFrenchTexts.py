@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
 
-# Fonctions
+# Programme
 
 def nbPhrases(texte):
     texte = texte.replace('...', '.').replace("…", ".")
@@ -72,13 +72,13 @@ def programmeLIX():
 def affichageResultats():
     return f"Nombre de mots : {mots}\n\nNombre de mots longs : {motsLongs}\n\nNombre de phrases : {phrases}\n\nScore LIX : {lix}\n\nDifficulté : {difficulte}"
 
-# Interface du programme
+# GUI Tkinter
 
 root = tk.Tk()
 root.title("Calculateur d'indice de lisibilité LIX")
-root.minsize(500,200)
+root.minsize(500,250)
 root.maxsize(600,300)
-root.geometry("500x200+0+0")
+root.geometry("500x250+0+0")
 userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.\n\n⌛ Patientez...",
                      padx= 10, pady= 10, font=("Monospace", 12))
 userInput.pack()
@@ -86,6 +86,7 @@ userInput.pack()
 def button_clicked():
     programmeLIX()
     window_results()
+
 
 def window_results():
     resultats = tk.Toplevel()
@@ -145,5 +146,4 @@ button = tk.Button(root,
                    width=10,
                    wraplength=100)
 button.pack(padx=10, pady=15)
-
 root.mainloop()
