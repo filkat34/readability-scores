@@ -43,7 +43,7 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     elif scoreLix >= 40:
         difficulte = "Difficulté moyenne"
     elif scoreLix >= 30:
-        difficulte = "Facile."
+        difficulte = "Facile"
     else:
         difficulte = "Très facile"
     return scoreLix, difficulte
