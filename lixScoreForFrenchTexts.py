@@ -79,7 +79,7 @@ root.title("Calculateur d'indice de lisibilité LIX")
 root.minsize(500,200)
 root.maxsize(600,300)
 root.geometry("500x200+0+0")
-userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.\n\nPatientez...",
+userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.\n\n⌛ Patientez...",
                      padx= 10, pady= 10, font=("Monospace", 12))
 userInput.pack()
 
