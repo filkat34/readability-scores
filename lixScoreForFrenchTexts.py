@@ -16,8 +16,9 @@ def nbPhrases(texte):
     return nbPhrases
 
 def compteurMots(texte):
-    texte = texte.replace("’", " ").replace("'", " ").replace("-", " ")\
-        .replace("  ", " ").replace("\\n", "")
+    texte = texte.replace("’", " ").replace("'", " ") # séparer le mot élidé du suivant par un espace
+    texte = texte.replace("-", " ") # remplacer trait d'union par espace pour séparer les mots lors d'une inversion sujet-verbe
+    texte = texte.replace("  ", " ").replace("\\n", "") # supprimer les retours à la ligne et s'assurer qu'un seul espace sépare les mots
     ponctuation = ['!','(',')','-','[',']','{','}',';',':',\
         '«','»',"'",'"','\\','<','>','.', '/', '?', '@', '#',\
          '$', '%','^','&','*','_','~','...', "…"]
