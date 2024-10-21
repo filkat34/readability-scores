@@ -3,7 +3,6 @@
 # auteur : Filippos
 
 import tkinter as tk
-from tkinter import ttk
 from tkinter import filedialog
 
 # Programme
@@ -67,7 +66,7 @@ def programmeLIX():
     lix = scoreLix(compteurMots(texte)[0], compteurMots(texte)[1], nbPhrases(texte))[0]
     global difficulte
     difficulte = scoreLix(compteurMots(texte)[0], compteurMots(texte)[1], nbPhrases(texte))[1]
-    return filename,mots, motsLongs, phrases, lix, difficulte
+    return filename, mots, motsLongs, phrases, lix, difficulte
 
 def affichageResultats():
     return f"Nombre de mots : {mots}\n\nNombre de mots longs : {motsLongs}\n\nNombre de phrases : {phrases}\n\nScore LIX : {lix}\n\nDifficulté : {difficulte}"
@@ -76,53 +75,12 @@ def affichageResultats():
 
 root = tk.Tk()
 root.title("Calculateur d'indice de lisibilité LIX")
-root.minsize(500,250)
+root.minsize(500,450)
 root.maxsize(600,300)
-root.geometry("500x250+0+0")
+root.geometry("500x450+0+0")
 userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.\n\n⌛ Patientez...",
                      padx= 10, pady= 10, font=("Monospace", 12))
 userInput.pack()
-
-def button_clicked():
-    programmeLIX()
-    window_results()
-
-
-def window_results():
-    resultats = tk.Toplevel()
-    resultats.title(f"{filename}")
-    resultats.minsize(300,300)
-    resultats.maxsize(1200,400)
-    resultats.geometry("300x300+550+0")
-    resultats.config(width=500, height=600)
-    resultatsDetail = tk.Label(resultats, text=affichageResultats(),
-                        padx= 20, pady= 20, justify="left", font=("Monospace", 12))
-    resultatsDetail.pack(anchor="w")
-    button = tk.Button(resultats, 
-                   text="Quitter", 
-                   command=resultats.destroy,
-                   activebackground="grey", 
-                   activeforeground="white",
-                   anchor="center",
-                   bd=3,
-                   bg="lightgray",
-                   cursor="hand2",
-                   disabledforeground="gray",
-                   fg="black",
-                   font=("Monospace", 11),
-                   height=1,
-                   highlightbackground="black",
-                   highlightcolor="green",
-                   highlightthickness=2,
-                   justify="center",
-                   overrelief="raised",
-                   padx=5,
-                   pady=5,
-                   width=10,
-                   wraplength=100)
-    button.pack(padx=10, pady=15)
-    root.mainloop()
-    
 button = tk.Button(root, 
                    text="Ajouter", 
                    command=lambda:button_clicked(),
@@ -146,4 +104,13 @@ button = tk.Button(root,
                    width=10,
                    wraplength=100)
 button.pack(padx=10, pady=15)
+var=tk.StringVar()
+resultatsDetail = tk.Label(root, textvariable=var,
+                           padx= 20, pady= 20, justify="left", font=("Monospace", 12))
+resultatsDetail.pack(anchor="w")
+
+def button_clicked():
+    programmeLIX()
+    var.set(affichageResultats())
+
 root.mainloop()
