@@ -37,15 +37,15 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     scoreLix = (nbMots/nbPhrases)+(100*(nbMotsLongs/nbMots))
     difficulte =''
     if scoreLix > 60 :
-        difficulte = "Très difficile."
+        difficulte = "Très difficile"
     elif scoreLix >= 50:
-        difficulte = "Difficile."
+        difficulte = "Difficile"
     elif scoreLix >= 40:
-        difficulte = "Difficulté moyenne."
+        difficulte = "Difficulté moyenne"
     elif scoreLix >= 30:
         difficulte = "Facile."
     else:
-        difficulte = "Très facile."
+        difficulte = "Très facile"
     return scoreLix, difficulte
 
 def programmeLIX():
