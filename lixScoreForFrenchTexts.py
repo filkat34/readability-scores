@@ -131,7 +131,7 @@ varPatientez.set("⚠️ Le temps de chargement dépend de la longueur du texte.
 
 ### Labels
 
-introTexte=tk.Label(text=intro)
+introTexte=tk.Label(text=intro, justify="center")
 patientez=tk.Label(textvariable=varPatientez, fg='red', justify='center')
 resfichier=tk.Label(text=txtFichier)
 resfichier1=tk.Label(textvariable=varFichier, fg='blue')
