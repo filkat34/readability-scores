@@ -1,4 +1,4 @@
-# Programme lix readability score for French texts
+# Programme lix readability score for french texts
 # but : calculer l'indice de lisibilité LIX d'un texte français
 # auteur : Filippos
 
@@ -7,7 +7,7 @@ from tkinter import filedialog
 from tkinter import ttk
 import os
 
-# Programme
+## Programme
 
 def nbPhrases(texte):
     texte = texte.replace('...', '.').replace("…", ".")
@@ -74,7 +74,7 @@ def programmeLIX():
 def affichageResultats():
     return f"Fichier : {filename}\n\nNombre de mots : {mots}\n\nNombre de mots longs : {motsLongs}\n\nNombre de phrases : {phrases}\n\nScore LIX : {lix}\n\nDifficulté : {difficulte}"
 
-# GUI Tkinter
+## GUI Tkinter
 
 mainWindow = tk.Tk()
 mainWindow.title("Calculateur d'indice de lisibilité LIX")
@@ -82,7 +82,7 @@ mainWindow.geometry("560x460")
 mainWindow.minsize(560,460)
 mainWindow.maxsize(560,460)
 
-# Interactions utilisateur
+### Interactions utilisateur
 
 def button_clicked():
     varPatientez.set('⌛ Patientez. Cela peut prendre du temps...')
@@ -104,7 +104,7 @@ def effacer():
     varlix.set("                        ")
     varniveauDifficulte.set("                        ")
 
-# Textes et variablestextes
+### Textes et variables
 
 intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf) pour calculer son indice de lisibilité LIX."
 txtFichier="Fichier :"
@@ -129,7 +129,7 @@ varniveauDifficulte.set("                        ")
 varPatientez=tk.StringVar()
 varPatientez.set("⚠️ Le temps de chargement dépend de la longueur du texte.")
 
-# Labels
+### Labels
 
 introTexte=tk.Label(text=intro)
 patientez=tk.Label(textvariable=varPatientez, fg='red', justify='center')
@@ -146,11 +146,11 @@ reslix1= tk.Label(textvariable=varlix, fg='blue')
 resniveauDifficulte= tk.Label(text=txtNiveauDifficulte)
 resniveauDifficulte1= tk.Label(textvariable=varniveauDifficulte, fg='blue')
 
-# Boutons
+### Boutons
 
 boutonAjouter = tk.Button(text ="Ajouter", command=lambda:button_clicked())
 
-# Places sur la grille
+### Disposition sur la grille
 
 introTexte.grid(row=1, column=0, columnspan=2, pady=10, padx=10)
 boutonAjouter.grid(row=2, column=0, columnspan=2, pady=10, padx=10)
