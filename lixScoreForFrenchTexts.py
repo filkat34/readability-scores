@@ -77,7 +77,7 @@ def affichageResultats():
 ## GUI Tkinter
 
 mainWindow = tk.Tk()
-mainWindow.minsize(600,350)
+mainWindow.minsize(450,330)
 mainWindow.title("Calculateur d'indice de lisibilité LIX")
 
 
