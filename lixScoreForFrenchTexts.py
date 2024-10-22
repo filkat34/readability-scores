@@ -77,10 +77,8 @@ def affichageResultats():
 ## GUI Tkinter
 
 mainWindow = tk.Tk()
+mainWindow.minsize(600,350)
 mainWindow.title("Calculateur d'indice de lisibilité LIX")
-mainWindow.columnconfigure(0, weight=1)
-mainWindow.columnconfigure(1, weight=2)
-mainWindow.rowconfigure((0,1,2,3,4,5,6,7,8,9), weight=1)
 
 
 ### Interactions utilisateur
@@ -109,7 +107,7 @@ def effacer():
 
 ### Textes et variables
 
-intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\npour calculerson indice de lisibilité LIX."
+intro="Ajoutez un fichier texte pour calculer son indice de lisibilité LIX."
 txtFichier="Fichier :"
 txtNbMots="Nombre de mots :"
 txtNbMotsLongs="Nombre de mots longs (>6 lettres) :"
@@ -154,25 +152,25 @@ resniveauDifficulte1= tk.Label(textvariable=varniveauDifficulte, fg='green', fon
 
 ### Boutons
 
-boutonAjouter = tk.Button(text ="Ajouter", command=lambda:button_clicked())
+boutonAjouter = tk.Button(text ="txt, odt, doc, docx, pdf", font=('Monospace', 11), command=lambda:button_clicked())
 
 ### Disposition sur la grille
 
-introTexte.grid(row=0, column=0, columnspan=2, pady=10, padx=10)
-boutonAjouter.grid(row=1, column=0, columnspan=2, pady=10, padx=10)
-patientez.grid(row=2, column=0, columnspan=2, pady=5, padx=10)
+introTexte.grid(row=0, column=0, columnspan=2, pady=5, padx=10)
+boutonAjouter.grid(row=1, column=0, columnspan=2, pady=5, padx=10)
+patientez.grid(row=2, column=0, columnspan=2, pady=0, padx=10)
 termine.grid(row=3, column=0, columnspan=2, pady=0, padx=10)
 resfichier.grid(row=4, column=0, sticky="w", pady=0, padx=10)
-resfichier1.grid(row=4, column=1, sticky="w", pady=10, padx=10)
-resnbMots.grid(row=5, column=0, sticky="w", pady=10, padx=10)
-resnbMots1.grid(row=5, column=1, sticky="w", pady=10, padx=10)
-resnbMotsLongs.grid(row=6, column=0, sticky="w", pady=10, padx=10)
-resnbMotsLongs1.grid(row=6, column=1, sticky="w", pady=10, padx=10)
-resnbPhrases.grid(row=7, column=0, sticky="w", pady=10, padx=10)
-resnbPhrases1.grid(row=7, column=1, sticky="w", pady=10, padx=10)
-reslix.grid(row=8, column=0, sticky="w", pady=10, padx=10)
-reslix1.grid(row=8, column=1,sticky="w", pady=10, padx=10)
-resniveauDifficulte.grid(row=9, column=0, sticky="w", pady=10, padx=10)
-resniveauDifficulte1.grid(row=9, column=1, sticky="w", pady=10, padx=10)
+resfichier1.grid(row=4, column=1, sticky="w", pady=5, padx=10)
+resnbMots.grid(row=5, column=0, sticky="w", pady=5, padx=10)
+resnbMots1.grid(row=5, column=1, sticky="w", pady=5, padx=10)
+resnbMotsLongs.grid(row=6, column=0, sticky="w", pady=5, padx=10)
+resnbMotsLongs1.grid(row=6, column=1, sticky="w", pady=5, padx=10)
+resnbPhrases.grid(row=7, column=0, sticky="w", pady=5, padx=10)
+resnbPhrases1.grid(row=7, column=1, sticky="w", pady=5, padx=10)
+reslix.grid(row=8, column=0, sticky="w", pady=5, padx=10)
+reslix1.grid(row=8, column=1,sticky="w", pady=5, padx=10)
+resniveauDifficulte.grid(row=9, column=0, sticky="w", pady=5, padx=10)
+resniveauDifficulte1.grid(row=9, column=1, sticky="w", pady=5, padx=10)
 
 mainWindow.mainloop()
