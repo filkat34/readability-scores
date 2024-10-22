@@ -83,6 +83,7 @@ mainWindow.title("Calculateur d'indice de lisibilité LIX")
 ### Interactions utilisateur
 
 def button_clicked():
+    vartermine.set('')
     varPatientez.set('⌛ Patientez. Cela peut prendre du temps...')
     effacer()
     programmeLIX()
@@ -92,19 +93,20 @@ def button_clicked():
     varnbPhrases.set(f"{phrases}")
     varlix.set(f"{lix}")
     varniveauDifficulte.set(f"{difficulte}")
-    varPatientez.set('✅ Terminé !')
+    varPatientez.set('')
+    vartermine.set('✅ Terminé !')
 
 def effacer():
-    varFichier.set("                        ")
-    varnbMots.set("                        ")
-    varnbMotsLongs.set("                        ")
-    varnbPhrases.set("                        ")
-    varlix.set("                        ")
-    varniveauDifficulte.set("                        ")
+    varFichier.set("")
+    varnbMots.set("")
+    varnbMotsLongs.set("")
+    varnbPhrases.set("")
+    varlix.set("")
+    varniveauDifficulte.set("")
 
 ### Textes et variables
 
-intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf) pour calculer son indice de lisibilité LIX."
+intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf) pour calculer\nson indice de lisibilité LIX."
 txtFichier="Fichier :"
 txtNbMots="Nombre de mots :"
 txtNbMotsLongs="Nombre de mots longs (>6 lettres) :"
@@ -113,36 +115,39 @@ txtLix="Score LIX :"
 txtNiveauDifficulte="Niveau de difficulté :"
 
 varFichier=tk.StringVar()
-varFichier.set("                        ")
+varFichier.set("")
 varnbMots=tk.StringVar()
-varnbMots.set("                        ")
+varnbMots.set("")
 varnbMotsLongs=tk.StringVar()
-varnbMotsLongs.set("                        ")
+varnbMotsLongs.set("")
 varnbPhrases=tk.StringVar()
-varnbPhrases.set("                        ")
+varnbPhrases.set("")
 varlix=tk.StringVar()
-varlix.set("                        ")
+varlix.set("")
 varniveauDifficulte=tk.StringVar()
-varniveauDifficulte.set("                        ")
+varniveauDifficulte.set("")
 varPatientez=tk.StringVar()
 varPatientez.set("⚠️ Le temps de chargement dépend de la longueur du texte.")
+vartermine=tk.StringVar()
+vartermine.set("")
 
 ### Labels
 
-introTexte=tk.Label(text=intro, justify="center")
-patientez=tk.Label(textvariable=varPatientez, fg='red', justify='center')
-resfichier=tk.Label(text=txtFichier)
-resfichier1=tk.Label(textvariable=varFichier, fg='blue')
-resnbMots= tk.Label(text=txtNbMots)
-resnbMots1= tk.Label(textvariable=varnbMots, fg='blue')
-resnbMotsLongs= tk.Label(text=txtNbMotsLongs)
-resnbMotsLongs1= tk.Label(textvariable=varnbMotsLongs, fg='blue')
-resnbPhrases= tk.Label(text=txtNbPhrases)
-resnbPhrases1= tk.Label(textvariable=varnbPhrases, fg='blue')
-reslix= tk.Label(text=txtLix)
-reslix1= tk.Label(textvariable=varlix, fg='blue')
-resniveauDifficulte= tk.Label(text=txtNiveauDifficulte)
-resniveauDifficulte1= tk.Label(textvariable=varniveauDifficulte, fg='blue')
+introTexte=tk.Label(text=intro, justify="center", font=('Monospace', 11))
+patientez=tk.Label(textvariable=varPatientez, fg='red', justify='center', font=('Monospace', 11))
+termine=tk.Label(textvariable=vartermine, fg='green', justify='center', font=('Monospace', 11))
+resfichier=tk.Label(text=txtFichier, font=('Monospace', 11),)
+resfichier1=tk.Label(textvariable=varFichier, fg='green', font=('Monospace', 11))
+resnbMots= tk.Label(text=txtNbMots, font=('Monospace', 11))
+resnbMots1= tk.Label(textvariable=varnbMots, fg='green', font=('Monospace', 11))
+resnbMotsLongs= tk.Label(text=txtNbMotsLongs, font=('Monospace', 11))
+resnbMotsLongs1= tk.Label(textvariable=varnbMotsLongs, font=('Monospace', 11), fg='green')
+resnbPhrases= tk.Label(text=txtNbPhrases, font=('Monospace', 11))
+resnbPhrases1= tk.Label(textvariable=varnbPhrases, fg='green', font=('Monospace', 11))
+reslix= tk.Label(text=txtLix, font=('Monospace', 11))
+reslix1= tk.Label(textvariable=varlix, fg='green', font=('Monospace', 11))
+resniveauDifficulte= tk.Label(text=txtNiveauDifficulte, font=('Monospace', 11))
+resniveauDifficulte1= tk.Label(textvariable=varniveauDifficulte, fg='green', font=('Monospace', 11))
 
 ### Boutons
 
@@ -150,20 +155,21 @@ boutonAjouter = tk.Button(text ="Ajouter", command=lambda:button_clicked())
 
 ### Disposition sur la grille
 
-introTexte.grid(row=0, column=0, sticky="w", columnspan=2, pady=10, padx=10)
+introTexte.grid(row=0, column=0, columnspan=2, pady=10, padx=10)
 boutonAjouter.grid(row=1, column=0, columnspan=2, pady=10, padx=10)
-patientez.grid(row=2, column=0, columnspan=2, pady=10, padx=10)
-resfichier.grid(row=3, column=0, sticky="e", pady=10, padx=10)
-resfichier1.grid(row=3, column=1, sticky="w", pady=10, padx=10)
-resnbMots.grid(row=4, column=0, sticky="e", pady=10, padx=10)
-resnbMots1.grid(row=4, column=1, sticky="w", pady=10, padx=10)
-resnbMotsLongs.grid(row=5, column=0, sticky="e", pady=10, padx=10)
-resnbMotsLongs1.grid(row=5, column=1, sticky="w", pady=10, padx=10)
-resnbPhrases.grid(row=6, column=0, sticky="e", pady=10, padx=10)
-resnbPhrases1.grid(row=6, column=1, sticky="w", pady=10, padx=10)
-reslix.grid(row=7, column=0, sticky="e", pady=10, padx=10)
-reslix1.grid(row=7, column=1, sticky="w", pady=10, padx=10)
-resniveauDifficulte.grid(row=8, column=0, sticky="e", pady=10, padx=10)
-resniveauDifficulte1.grid(row=8, column=1, sticky="w", pady=10, padx=10)
+patientez.grid(row=2, column=0, columnspan=2, pady=5, padx=10)
+termine.grid(row=3, column=0, columnspan=2, pady=0, padx=10)
+resfichier.grid(row=4, column=0, sticky="w", pady=0, padx=10)
+resfichier1.grid(row=4, column=1, sticky="w", pady=10, padx=10)
+resnbMots.grid(row=5, column=0, sticky="w", pady=10, padx=10)
+resnbMots1.grid(row=5, column=1, sticky="w", pady=10, padx=10)
+resnbMotsLongs.grid(row=6, column=0, sticky="w", pady=10, padx=10)
+resnbMotsLongs1.grid(row=6, column=1, sticky="w", pady=10, padx=10)
+resnbPhrases.grid(row=7, column=0, sticky="w", pady=10, padx=10)
+resnbPhrases1.grid(row=7, column=1, sticky="w", pady=10, padx=10)
+reslix.grid(row=8, column=0, sticky="w", pady=10, padx=10)
+reslix1.grid(row=8, column=1,sticky="w", pady=10, padx=10)
+resniveauDifficulte.grid(row=9, column=0, sticky="w", pady=10, padx=10)
+resniveauDifficulte1.grid(row=9, column=1, sticky="w", pady=10, padx=10)
 
 mainWindow.mainloop()
