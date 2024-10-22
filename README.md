@@ -1,4 +1,4 @@
-# Readability LIX score calculator for french texts
+# LIX readability score calculator for french texts
 
 Ce programme calcule l'indice de lisibilité LIX. Il est paramétré pour les textes français.
 
