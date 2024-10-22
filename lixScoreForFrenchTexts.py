@@ -78,6 +78,9 @@ def affichageResultats():
 
 mainWindow = tk.Tk()
 mainWindow.title("Calculateur d'indice de lisibilité LIX")
+mainWindow.columnconfigure(0, weight=1)
+mainWindow.columnconfigure(1, weight=2)
+mainWindow.rowconfigure((0,1,2,3,4,5,6,7,8,9), weight=1)
 
 
 ### Interactions utilisateur
@@ -106,7 +109,7 @@ def effacer():
 
 ### Textes et variables
 
-intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf) pour calculer\nson indice de lisibilité LIX."
+intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\npour calculerson indice de lisibilité LIX."
 txtFichier="Fichier :"
 txtNbMots="Nombre de mots :"
 txtNbMotsLongs="Nombre de mots longs (>6 lettres) :"
