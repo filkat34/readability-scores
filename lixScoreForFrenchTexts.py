@@ -4,6 +4,8 @@
 
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import ttk
+import os
 
 # Programme
 
@@ -42,7 +44,7 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     elif scoreLix >= 50:
         difficulte = "Difficile"
     elif scoreLix >= 40:
-        difficulte = "Difficulté moyenne"
+        difficulte = "Moyenne"
     elif scoreLix >= 30:
         difficulte = "Facile"
     else:
@@ -50,12 +52,13 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     return scoreLix, difficulte
 
 def programmeLIX():
-    global filename
-    filename = filedialog.askopenfilename(
+    filepath = filedialog.askopenfilename(
     filetypes=(("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),("PDF Files", ".pdf")))
-    file = open(filename, encoding="utf8", errors='ignore')
+    file = open(filepath, encoding="utf8", errors='ignore')
     texte = file.read()
     file.close()
+    global filename
+    filename = os.path.basename(filepath)
     global mots
     mots = compteurMots(texte)[0]
     global motsLongs
@@ -69,48 +72,100 @@ def programmeLIX():
     return filename, mots, motsLongs, phrases, lix, difficulte
 
 def affichageResultats():
-    return f"Nombre de mots : {mots}\n\nNombre de mots longs : {motsLongs}\n\nNombre de phrases : {phrases}\n\nScore LIX : {lix}\n\nDifficulté : {difficulte}"
+    return f"Fichier : {filename}\n\nNombre de mots : {mots}\n\nNombre de mots longs : {motsLongs}\n\nNombre de phrases : {phrases}\n\nScore LIX : {lix}\n\nDifficulté : {difficulte}"
 
 # GUI Tkinter
 
-root = tk.Tk()
-root.title("Calculateur d'indice de lisibilité LIX")
-root.minsize(500,450)
-root.maxsize(600,300)
-root.geometry("500x450+0+0")
-userInput = tk.Label(text="Ajoutez un fichier texte (txt, odt, doc, docx, pdf)\n pour calculer son indice de lisibilité LIX.\n\nLe temps de chargement dépend de la longueur du texte.\n\n⌛ Patientez...",
-                     padx= 10, pady= 10, font=("Monospace", 12))
-userInput.pack()
-button = tk.Button(root, 
-                   text="Ajouter", 
-                   command=lambda:button_clicked(),
-                   activebackground="grey", 
-                   activeforeground="white",
-                   anchor="center",
-                   bd=3,
-                   bg="lightgray",
-                   cursor="hand2",
-                   disabledforeground="gray",
-                   fg="black",
-                   font=("Monospace", 11),
-                   height=1,
-                   highlightbackground="black",
-                   highlightcolor="green",
-                   highlightthickness=2,
-                   justify="center",
-                   overrelief="raised",
-                   padx=5,
-                   pady=5,
-                   width=10,
-                   wraplength=100)
-button.pack(padx=10, pady=15)
-var=tk.StringVar()
-resultatsDetail = tk.Label(root, textvariable=var,
-                           padx= 20, pady= 20, justify="left", font=("Monospace", 12))
-resultatsDetail.pack(anchor="w")
+mainWindow = tk.Tk()
+mainWindow.title("Calculateur d'indice de lisibilité LIX")
+mainWindow.geometry("500x400")
+mainWindow.minsize(500,400)
+mainWindow.maxsize(500,400)
+
+# Interactions utilisateur
 
 def button_clicked():
+    varPatientez.set('⌛ Patientez. Cela peut prendre du temps...')
+    effacer()
     programmeLIX()
-    var.set(affichageResultats())
+    varFichier.set(f"{filename}")
+    varnbMots.set(f"{mots}")
+    varnbMotsLongs.set(f"{motsLongs}")
+    varnbPhrases.set(f"{phrases}")
+    varlix.set(f"{lix}")
+    varniveauDifficulte.set(f"{difficulte}")
+    varPatientez.set('✅ Terminé !')
 
-root.mainloop()
+def effacer():
+    varFichier.set("                        ")
+    varnbMots.set("                        ")
+    varnbMotsLongs.set("                        ")
+    varnbPhrases.set("                        ")
+    varlix.set("                        ")
+    varniveauDifficulte.set("                        ")
+
+# Textes et variablestextes
+
+intro="Ajoutez un fichier texte (txt, odt, doc, docx, pdf) pour calculer son indice de lisibilité LIX."
+txtFichier="Fichier :"
+txtNbMots="Nombre de mots :"
+txtNbMotsLongs="Nombre de mots longs :"
+txtNbPhrases="Nombre de phrases :"
+txtLix="Score LIX :"
+txtNiveauDifficulte="Niveau de difficulté :"
+
+varFichier=tk.StringVar()
+varFichier.set("                        ")
+varnbMots=tk.StringVar()
+varnbMots.set("                        ")
+varnbMotsLongs=tk.StringVar()
+varnbMotsLongs.set("                        ")
+varnbPhrases=tk.StringVar()
+varnbPhrases.set("                        ")
+varlix=tk.StringVar()
+varlix.set("                        ")
+varniveauDifficulte=tk.StringVar()
+varniveauDifficulte.set("                        ")
+varPatientez=tk.StringVar()
+varPatientez.set("⚠️ Le temps de chargement dépend de la longueur du texte.")
+
+# Labels
+
+introTexte=tk.Label(text=intro)
+patientez=tk.Label(textvariable=varPatientez, fg='red', justify='center')
+resfichier=tk.Label(text=txtFichier)
+resfichier1=tk.Label(textvariable=varFichier, fg='blue')
+resnbMots= tk.Label(text=txtNbMots)
+resnbMots1= tk.Label(textvariable=varnbMots, fg='blue')
+resnbMotsLongs= tk.Label(text=txtNbMotsLongs)
+resnbMotsLongs1= tk.Label(textvariable=varnbMotsLongs, fg='blue')
+resnbPhrases= tk.Label(text=txtNbPhrases)
+resnbPhrases1= tk.Label(textvariable=varnbPhrases, fg='blue')
+reslix= tk.Label(text=txtLix)
+reslix1= tk.Label(textvariable=varlix, fg='blue')
+resniveauDifficulte= tk.Label(text=txtNiveauDifficulte)
+resniveauDifficulte1= tk.Label(textvariable=varniveauDifficulte, fg='blue')
+
+# Boutons
+
+boutonAjouter = tk.Button(text ="Ajouter", command=lambda:button_clicked())
+
+# Places sur la grille
+
+introTexte.grid(row=1, column=0, columnspan=2, pady=10, padx=10)
+boutonAjouter.grid(row=2, column=0, columnspan=2, pady=10, padx=10)
+patientez.grid(row=4, column=0, columnspan=2, pady=10, padx=10)
+resfichier.grid(row=5, column=0, sticky="e", pady=10, padx=10)
+resfichier1.grid(row=5, column=1, sticky="w", pady=10, padx=10)
+resnbMots.grid(row=6, column=0, sticky="e", pady=10, padx=10)
+resnbMots1.grid(row=6, column=1, sticky="w", pady=10, padx=10)
+resnbMotsLongs.grid(row=7, column=0, sticky="e", pady=10, padx=10)
+resnbMotsLongs1.grid(row=7, column=1, sticky="w", pady=10, padx=10)
+resnbPhrases.grid(row=8, column=0, sticky="e", pady=10, padx=10)
+resnbPhrases1.grid(row=8, column=1, sticky="w", pady=10, padx=10)
+reslix.grid(row=9, column=0, sticky="e", pady=10, padx=10)
+reslix1.grid(row=9, column=1, sticky="w", pady=10, padx=10)
+resniveauDifficulte.grid(row=11, column=0, sticky="e", pady=10, padx=10)
+resniveauDifficulte1.grid(row=11, column=1, sticky="w", pady=10, padx=10)
+
+mainWindow.mainloop()
