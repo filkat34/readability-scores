@@ -78,9 +78,9 @@ def affichageResultats():
 
 mainWindow = tk.Tk()
 mainWindow.title("Calculateur d'indice de lisibilité LIX")
-mainWindow.geometry("500x400")
-mainWindow.minsize(500,400)
-mainWindow.maxsize(500,400)
+mainWindow.geometry("560x460")
+mainWindow.minsize(560,460)
+mainWindow.maxsize(560,460)
 
 # Interactions utilisateur
 
