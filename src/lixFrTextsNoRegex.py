@@ -21,7 +21,7 @@ def nbPhrases(texte):
 def compteurMots(texte):
     texte = texte.replace("’", " ").replace("'", " ") # séparer le mot élidé du suivant par un espace
     texte = texte.replace("-", " ") # remplacer trait d'union par espace pour séparer les mots lors d'une inversion sujet-verbe
-    texte = texte.replace("  ", " ").replace("\\n", "") # supprimer les retours à la ligne et s'assurer qu'un seul espace sépare les mots
+    texte = texte.replace("  ", " ") # supprimer les retours à la ligne et s'assurer qu'un seul espace sépare les mots
     ponctuation = ['!','(',')','-','[',']','{','}',';',':',\
         '«','»',"'",'"','\\','<','>','.', '/', '?', '@', '#',\
          '$', '%','^','&','*','_','~','...', "…"]
@@ -52,8 +52,9 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     return scoreLix, difficulte
 
 def programmeLIX():
-    filepath = filedialog.askopenfilename(
-    filetypes=(("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),("PDF Files", ".pdf")))
+    filepath = filedialog.askopenfilename(initialdir = "/desktop",
+                                          title = "Choisissez un fichier .txt",
+                                          filetype = (("txt files","*.txt"),("all files","*.*")))
     file = open(filepath, encoding="utf8", errors='ignore')
     texte = file.read()
     file.close()

@@ -36,8 +36,9 @@ def niveauDifficulte(lixScore):
 
 ## Programme
 
-filepath=filedialog.askopenfilename(
-filetypes=(("Text files", ("*.txt", "*.doc", "*.docx", "*.odt")),("PDF Files", ".pdf")))
+filepath = filedialog.askopenfilename(initialdir = "/desktop",
+                                          title = "Choisissez un fichier .txt",
+                                          filetype = (("txt files","*.txt"),("all files","*.*")))
 file=open(filepath, encoding="utf8", errors='ignore')
 texte=file.read()
 file.close()
