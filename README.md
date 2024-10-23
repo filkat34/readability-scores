@@ -8,9 +8,7 @@ L'indice de lisibilité LIX est une mesure développée par le linguiste suédoi
 
 Plus l'indice LIX est élevé, plus le texte est difficile à lire.
 
-## Description
-
-Ce programme accepte en saisie utilisateur le chemin d'accès d'un fichier texte (text, odt, doc, docx, pdf) dont il souhaite calculer l'indice LIX et affiche en sortie les éléments suivants :
+Ce programme accepte en saisie un fichier texte brut (.txt) dont l'utilisateur souhaite calculer l'indice LIX et affiche en sortie les éléments suivants :
 
 - nombre de phrases ;
 - nombre de mots ;
@@ -19,3 +17,7 @@ Ce programme accepte en saisie utilisateur le chemin d'accès d'un fichier texte
 - interprétation du niveau de difficulté du texte (très difficile, difficile, moyenne, facile, très facile).
 
 Le code propose une interface utilisateur minimaliste programmée sur Tkinter.
+
+## Versions du programme
+
+Deux versions du même programme sont proposées. L'une utilise les RegEx de Python et est plus rapide et légère en ressources. L'autre utilise des boucles traditionnelles pour parcourir et mettre en forme le texte : plus le texte est long, plus le temps de traitement est long et plus le programme sollicite les ressources du système.
