@@ -52,9 +52,8 @@ def scoreLix(nbMots, nbMotsLongs, nbPhrases):
     return scoreLix, difficulte
 
 def programmeLIX():
-    filepath = filedialog.askopenfilename(initialdir = "/desktop",
-                                          title = "Choisissez un fichier .txt",
-                                          filetype = (("txt files","*.txt"),("all files","*.*")))
+    filepath = filedialog.askopenfilename(title= "Chosissez un fichier en texte brut...",
+        filetypes=(("Texte brut", ("*.txt")),("All Files", "*.*")))
     file = open(filepath, encoding="utf8", errors='ignore')
     texte = file.read()
     file.close()
