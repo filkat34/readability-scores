@@ -24,4 +24,4 @@ Deux versions du programme sont proposées.
 
 L'une utilise les RegEx de Python : elle est plus rapide et légère en ressources. 
 
-L'autre utilise des boucles traditionnelles pour parcourir et mettre en forme le texte : plus le texte est long, plus le temps de traitement est long et plus le programme sollicite les ressources du système...
+L'autre utilise des boucles traditionnelles pour parcourir et mettre en forme le texte : plus le texte est long, plus le temps de traitement est long et plus le programme sollicite les ressources du système.
