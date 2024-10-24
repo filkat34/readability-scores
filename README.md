@@ -25,3 +25,8 @@ Deux versions du programme sont proposées.
 L'une utilise les RegEx de Python : elle est plus rapide et légère en ressources. 
 
 L'autre utilise des boucles traditionnelles pour parcourir et mettre en forme le texte : plus le texte est long, plus le temps de traitement est long et plus le programme sollicite les ressources du système.
+
+## Notes pour plus tard...
+
+- [ ] Rajouter au programme une dimension sémantique en créant un indice composite fondé à la fois sur LIX et la fréquence lexicale des mots considée comme un indicateur de la difficulté du vocabulaire ;
+- [ ] Quelles bases de données de fréquence lexicale utiliser ? Open Lexicon...
