@@ -32,12 +32,14 @@
         const [file] = document.querySelector("input[type=file]").files;
         const reader = new FileReader();
 
-        function nbMots(str) { 
+        function nbMots(str) {
+            str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             let regex = /(\w+)/g;
-            return str.match(regex);
+            return str.match(regex).length;
         }
 
         function nbMotsLongs(str) { 
+            str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             let regex = /(\w\w\w\w\w\w\w+)/g;
             return str.match(regex).length;
         }
@@ -81,8 +83,5 @@
             reader.readAsText(file);
         }
     }</Script>
-
-
-
-
+    
 </html>
