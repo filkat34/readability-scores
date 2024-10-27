@@ -4,7 +4,6 @@
 
 import tkinter as tk
 from tkinter import filedialog
-from tkinter import ttk
 import os
 import re
 
