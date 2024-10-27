@@ -24,7 +24,7 @@ Pour le traitement du texte des expressions régulières ont été utilisées :
 
 - pour compter le nombre de mots : "\w+" ;
 - pour le décompte des mots de plus de six lettres : "\w\w\w\w\w\w\w+" ;
-- pour le décompte des phrases : "\w\w+\s?[.?!]". Le fait de chercher une ponctuation forte après un mot d'au moins deux lettres, permet d'exclure la plupart des abréviations consistant en une majuscule suivie d'un point".
+- pour le décompte des phrases : "\w\w+\s?[.?!]". Le fait de chercher une ponctuation forte après un mot d'au moins deux lettres, permet d'exclure la plupart des abréviations consistant en une majuscule suivie d'un point.
 
 ## Notes pour plus tard...
 
