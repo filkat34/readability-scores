@@ -18,13 +18,13 @@ Ce programme accepte en saisie un fichier texte brut (.txt) dont l'utilisateur s
 
 Le code propose une interface utilisateur minimaliste programmée sur Tkinter.
 
-## Versions du programme
+## Description
 
-Deux versions du programme sont proposées. 
+Pour le traitement du texte des expressions régulières ont été utilisées:
 
-L'une utilise les RegEx de Python : elle est plus rapide et légère en ressources. 
-
-L'autre utilise des boucles traditionnelles pour parcourir et mettre en forme le texte : plus le texte est long, plus le temps de traitement est long et plus le programme sollicite les ressources du système.
+- pour compter le nombre de mots : "\w+" ;
+- pour le décompte des mots de plus de six lettres : "\w\w\w\w\w\w\w+" ;
+- pour le décompte des phrases : "\w\w+\s?[.?!]". Le fait de chercher une ponctuation forte après un mot d'au moins deux lettres, permet d'exclure la plupart des abréviations consistant en une majuscule suivie d'un point".
 
 ## Notes pour plus tard...
 
