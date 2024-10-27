@@ -24,7 +24,7 @@ function niveauDifficulte(str){
    return "Très difficile";
   }else if (scoreLix(str) >= 50) {
     return "Difficile";
-  }else if (scoreLix >= 40) {
+  }else if (scoreLix(str) >= 40) {
         return "Moyenne";
   }else if (scoreLix(str) >= 30){
         return "Facile";

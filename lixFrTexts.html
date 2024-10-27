@@ -1,0 +1,88 @@
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>LIX readability score calculator</title>
+    </head>
+    <body>
+        <header>
+            <h1>📚 LIX readability score calculator 📚</h1>
+        </header>
+        <p>L'indice de lisibilité LIX est une mesure développée par le linguiste 
+            suédois Carl-Hugo Björnsson vers 1968.</p>
+        <p>Il est calculé en additionnant le nombre moyen de mots par phrase au 
+            pourcentage de mots longs (plus de six lettres) dans un texte donné.</p>
+        <p>Plus l'indice LIX est élevé, plus le texte est difficile à lire.</p>
+        <p>Ajoutez un fichier texte brut (.txt) ci-dessous pour calculer son indice LIX.</p>
+        <br>
+        <input type="file" onchange="lixText()" /><br />
+        <p class="lix"></p>
+        <p class="difficulte"></p>
+        <p class="mots"></p>
+        <p class="motslongs"></p>
+        <p class="phrases"></p>
+    </body>
+    <Script>
+        function lixText() {
+        const lix = document.querySelector(".lix");
+        const difficulte = document.querySelector(".difficulte");
+        const mots = document.querySelector(".mots");
+        const motslongs = document.querySelector(".motslongs");
+        const phrases = document.querySelector(".phrases");
+        const [file] = document.querySelector("input[type=file]").files;
+        const reader = new FileReader();
+
+        function nbMots(str) { 
+            let regex = /(\w+)/g;
+            return str.match(regex);
+        }
+
+        function nbMotsLongs(str) { 
+            let regex = /(\w\w\w\w\w\w\w+)/g;
+            return str.match(regex).length;
+        }
+
+        function nbPhrases(str){
+            let regex = /(\w\w+\s?[.?!])/g;
+            return str.match(regex).length;
+        }
+
+        function scoreLix(str){
+            return (nbMots(str)/nbPhrases(str))+(100*(nbMotsLongs(str)/nbMots(str)));
+        }
+
+        function niveauDifficulte(str){
+            if (scoreLix(str) > 60) {
+            return "Très difficile";
+            }else if (scoreLix(str) >= 50) {
+                return "Difficile";
+            }else if (scoreLix(str) >= 40) {
+                    return "Moyenne";
+            }else if (scoreLix(str) >= 30){
+                    return "Facile";
+            }else {
+                    return "Très facile";}
+        }
+
+        reader.addEventListener(
+            "load",
+            () => {
+            // this will then display a text file
+            lix.innerText = "Score LIX : " + scoreLix(reader.result);
+            difficulte.innerText = "Niveau de diffuclté : " + niveauDifficulte(reader.result);
+            mots.innerText = "Nombre de mots : " + nbMots(reader.result);
+            motslongs.innerText = "Nombre de mots longs : " + nbMotsLongs(reader.result);
+            phrases.innerText = "Nombre de phrases : " + nbPhrases(reader.result);
+            },
+            false,
+        );
+
+        if (file) {
+            reader.readAsText(file);
+        }
+    }</Script>
+
+
+
+
+</html>
