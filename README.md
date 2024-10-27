@@ -20,7 +20,7 @@ Le code propose une interface utilisateur minimaliste programmée sur Tkinter.
 
 ## Description
 
-Pour le traitement du texte des expressions régulières ont été utilisées:
+Pour le traitement du texte des expressions régulières ont été utilisées :
 
 - pour compter le nombre de mots : "\w+" ;
 - pour le décompte des mots de plus de six lettres : "\w\w\w\w\w\w\w+" ;
