@@ -36,7 +36,8 @@
             suédois Carl-Hugo Björnsson vers 1968.</p>
         <p>Il est calculé en additionnant le nombre moyen de mots par phrase au 
             pourcentage de mots longs (plus de six lettres) dans un texte donné.</p>
-        <p>Plus l'indice LIX est élevé, plus le texte est difficile à lire. Voici quelques exemples de textes dont l'indice LIX a été calculé :</p>
+        <p>Plus l'indice LIX est élevé, plus le texte est difficile à lire. 
+            Voici quelques exemples de textes dont l'indice LIX a été calculé :</p>
         <br>
         <table>
               <tr>
@@ -129,7 +130,6 @@
         reader.addEventListener(
             "load",
             () => {
-            // this will then display a text file
             lix.innerText = "Score LIX : " + scoreLix(reader.result);
             difficulte.innerText = "Niveau de difficulté : " + niveauDifficulte(reader.result);
             mots.innerText = "Nombre de mots : " + nbMots(reader.result);

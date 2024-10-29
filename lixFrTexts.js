@@ -1,4 +1,4 @@
-input= "Il était une fois une petite fille de village, la plus jolie qu'on eût su voir : sa mère en était folle, et sa grand-mère plus folle encore. Cette bonne femme lui fit faire un petit chaperon rouge qui lui seyait si bien, que partout on l'appelait le petit Chaperon rouge.";
+const input= "Il était une fois une petite fille de village, la plus jolie qu'on eût su voir : sa mère en était folle, et sa grand-mère plus folle encore. Cette bonne femme lui fit faire un petit chaperon rouge qui lui seyait si bien, que partout on l'appelait le petit Chaperon rouge.";
 
 function nbMots(str) { 
     let regex = /(\w+)/g;
