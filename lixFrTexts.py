@@ -29,6 +29,7 @@ def niveau_difficulte(score):
     else:
         return "Très facile"
 
+
 ## Programme
 
 filepath = filedialog.askopenfilename(title= "Chosissez un fichier en texte brut...",
