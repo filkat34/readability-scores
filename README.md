@@ -1,6 +1,30 @@
-# LIX readability score calculator for french texts
+## Objectif 
 
-Ce programme calcule l'indice de lisibilité LIX. Il est paramétré pour les textes français.
+L'objectif de ce programme est de permettre, à partir d'un fichier en texte brut (.txt) fourni par l'utilisateur, le calcul de six scores de lisibilité :
+
+* LIX
+* Automated RI
+* Gunning fog
+* Coleman-Liau
+* Flesch-Kincaid
+* Smog
+
+Ce programme permet aussi l'affichage des statistiques du texte sur lesquelles il s'est fondé pour effectuer le calcul, notamment les nombres de :
+
+* caractères
+* voyelles
+* digrammes
+* trigrammes
+* syllabes
+* mots
+* mots de plus de six caractères
+* mots de plus de trois syllabes
+* phrases
+
+## Description
+
+
+
 
 L'indice de lisibilité LIX est une mesure développée par le linguiste suédois Carl-Hugo Björnsson vers 1968. Il est calculé en additionnant le nombre moyen de mots par phrase au pourcentage de mots longs (plus de six lettres) dans un texte donné :
 
