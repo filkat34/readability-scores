@@ -12,7 +12,7 @@ Ce programme repose entièrement sur les expressions régulières pour établir 
 
 Si les expressions régulières apportent une réponse algorithmique efficace pour la grande majorité des variables à établir, elles se revèlent moins précises, bien que souvent suffisantes, pour calculer le nombre de syllabes d'un mot. Cela est étroitement lié à la complexité et à l'irrégularité de la langue française. 
 
-Pour faire face à ce problème et afin que les résultats soient fiables, il a été décidé de procéder au décompte des syllabes graphiques et non phoniques : pour ce faire on comptabilise d'abord le nombre de voyelles dans un mot donné ; ensuite, on soustrait à cette somme le nombre de digrammes et de trigrammes qui se trouvent dans le mot.
+Pour faire face à ce problème et afin que les résultats soient fiables, il a été décidé de procéder au décompte des syllabes graphiques et non phoniques : pour ce faire, on comptabilise d'abord le nombre de voyelles dans un mot donné ; ensuite, on soustrait à cette somme le nombre de digrammes et de trigrammes qui s'y trouvent.
 
 ## Bibliographie
 
