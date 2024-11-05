@@ -2,7 +2,7 @@
 
 ## Objectif 
 
-L'objectif de ce programme est de permettre, à partir d'un fichier en texte brut (.txt) fourni par l'utilisateur, le calcul de six scores de lisibilité : LIX, Automated RI, Gunning fog, Coleman-Liau, Flesch-Kincaid, Smog.
+L'objectif de ce programme est de permettre, à partir d'un fichier en texte brut (.txt) fourni par l'utilisateur, le calcul de six scores de lisibilité : LIX, RIX, Automated RI, Gunning fog, Coleman-Liau, Flesch-Kincaid, Smog.
 
 Ce programme permet aussi l'affichage des statistiques du texte sur lesquelles il s'est fondé pour effectuer le calcul, notamment les nombres de caractères, voyelles, digrammes, trigrammes, syllabes, mots, mots de plus de six caractères, mots de plus de trois syllabes, phrases.
 
