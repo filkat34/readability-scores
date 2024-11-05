@@ -1,32 +1,31 @@
 import text_analysis
-import formula_coleman_liau
-import formula_lix
-import formula_fkgl
-import formula_smog
-import formula_gunning
-import formula_ari
+import readability_formulas
+import scores_analysis
 
 
 def print_readability_scores(str):
-    lix = formula_lix.lix(str)[0]
-    lix_difficulte = formula_lix.lix(str)[1]
-    gunning = formula_gunning.gunning(str)[0]
-    gunning_difficulte = formula_gunning.gunning(str)[1]
-    fkgl = formula_fkgl.fkgl(str)[0]
-    fkgl_difficulte = formula_fkgl.fkgl(str)[1]
-    coleman_liau = formula_coleman_liau.coleman_liau(str)[0]
-    coleman_liau_difficulte = formula_coleman_liau.coleman_liau(str)[1]
-    ari = formula_ari. ari(str)[0]
-    ari_difficulte = formula_ari.ari(str)[1]
-    smog = formula_smog.smog(str)[0]
-    smog_difficulte = formula_smog.smog(str)[1]
+    lix = readability_formulas.lix(str)
+    lix_difficulte = scores_analysis.difficulte_lix(lix)
+    rix = readability_formulas.rix(str)
+    rix_difficulte = scores_analysis.difficulte_rix(rix)
+    gunning = readability_formulas.gunning(str)
+    gunning_difficulte = scores_analysis.difficulte(gunning)
+    fkgl = readability_formulas.fkgl(str)
+    fkgl_difficulte = scores_analysis.difficulte(fkgl)
+    coleman_liau = readability_formulas.coleman_liau(str)
+    coleman_liau_difficulte = scores_analysis.difficulte(coleman_liau)
+    ari = readability_formulas.ari(str)
+    ari_difficulte = scores_analysis.difficulte(ari)
+    smog = readability_formulas.smog(str)
+    smog_difficulte = scores_analysis.difficulte(smog)
     return print (f'''
-                Les indices de lisibilité suivants ont été conçus pour l'Anglais. L'indice de lisibilité LIX
-                est le plus fiable pour évaluer le niveau de difficulté des textes français.
+                Les indices de lisibilité suivants ont été conçus pour l'Anglais. Les indices de lisibilité LIX
+                et RIX sont les plus fiables pour évaluer le niveau de difficulté des textes français.
 
                 INDICES DE LISIBILITE
                 ---------------------
                 LIX................................ {lix} : {lix_difficulte}
+                RIX................................ {rix} : {rix_difficulte}
                 Gunning............................ {gunning} : {gunning_difficulte}
                 Flesch-Kincaid..................... {fkgl} : {fkgl_difficulte} 
                 Coleman-Liau....................... {coleman_liau} : {coleman_liau_difficulte}
