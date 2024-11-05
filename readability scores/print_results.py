@@ -32,7 +32,7 @@ def print_readability_scores(txt):
                 Coleman-Liau....................... {coleman_liau} : {coleman_liau_difficulte}
                 Automated readability index........ {ari} : {ari_difficulte}
                 SMOG............................... {smog} : {smog_difficulte}''')
-    
+
 def print_text_statistics(txt):
     """Prints the text stastistics that served to calculate the readability scores"""
     caracteres = text_analysis.caracteres(txt)
