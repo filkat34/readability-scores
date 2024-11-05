@@ -4,6 +4,7 @@ import scores_analysis
 
 
 def print_readability_scores(str):
+    """Prints the readability scores and the grade levels corresponding"""
     lix = readability_formulas.lix(str)
     lix_difficulte = scores_analysis.difficulte_lix(lix)
     rix = readability_formulas.rix(str)
@@ -33,6 +34,7 @@ def print_readability_scores(str):
                 SMOG............................... {smog} : {smog_difficulte}''')
     
 def print_text_statistics(str):
+    """Prints the text stastistics that served to calculate the readability scores"""
     caracteres = text_analysis.caracteres(str)
     voyelles = text_analysis.voyelles(str)
     digrammes = text_analysis.digrammes(str)
