@@ -5,19 +5,19 @@ import scores_analysis
 
 def print_readability_scores(txt):
     """Prints the readability scores and the grade levels corresponding"""
-    lix = readability_formulas.lix(txt)
+    lix = round(readability_formulas.lix(txt), 2)
     lix_difficulte = scores_analysis.difficulte_lix(lix)
-    rix = readability_formulas.rix(txt)
+    rix = round(readability_formulas.rix(txt), 2)
     rix_difficulte = scores_analysis.difficulte_rix(rix)
-    gunning = readability_formulas.gunning(txt)
+    gunning = round(readability_formulas.gunning(txt), 2)
     gunning_difficulte = scores_analysis.difficulte(gunning)
-    fkgl = readability_formulas.fkgl(txt)
+    fkgl = round(readability_formulas.fkgl(txt), 2)
     fkgl_difficulte = scores_analysis.difficulte(fkgl)
-    coleman_liau = readability_formulas.coleman_liau(txt)
+    coleman_liau = round(readability_formulas.coleman_liau(txt), 2)
     coleman_liau_difficulte = scores_analysis.difficulte(coleman_liau)
-    ari = readability_formulas.ari(txt)
+    ari = round(readability_formulas.ari(txt), 2)
     ari_difficulte = scores_analysis.difficulte(ari)
-    smog = readability_formulas.smog(txt)
+    smog = round(readability_formulas.smog(txt), 2)
     smog_difficulte = scores_analysis.difficulte(smog)
     return print (f'''
                 Les indices de lisibilité suivants ont été conçus pour l'Anglais. Les indices de lisibilité LIX
@@ -27,11 +27,11 @@ def print_readability_scores(txt):
                 ---------------------
                 LIX................................ {lix} : {lix_difficulte}
                 RIX................................ {rix} : {rix_difficulte}
-                Gunning............................ {gunning} : {gunning_difficulte}
+                Gunning fog........................ {gunning} : {gunning_difficulte}
+                SMOG............................... {smog} : {smog_difficulte}
                 Flesch-Kincaid..................... {fkgl} : {fkgl_difficulte} 
                 Coleman-Liau....................... {coleman_liau} : {coleman_liau_difficulte}
-                Automated readability index........ {ari} : {ari_difficulte}
-                SMOG............................... {smog} : {smog_difficulte}''')
+                Automated readability index........ {ari} : {ari_difficulte}''')
 
 def print_text_statistics(txt):
     """Prints the text stastistics that served to calculate the readability scores"""
