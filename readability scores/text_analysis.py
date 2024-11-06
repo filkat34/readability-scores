@@ -38,4 +38,6 @@ def mots_plusdetroissyllabes(txt):
 
 def phrases(txt):
     """Counts the number of sentences"""
+    if len(re.findall(r'\w{2,}\s?[.?!]', txt)) == 0:
+        return 1 # Prevents ZeroDivison error
     return len(re.findall(r'\w{2,}\s?[.?!]', txt))
