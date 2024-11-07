@@ -1,4 +1,5 @@
 def score_analysis(formula, score):
+    '''Returns the grade levels corresponding to a score for each formula'''
     formula_scales = [['lix',60,56,44,36,32,28,24],
                   ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
                   ['fkgl',16,13,10,8,7,6,5],
