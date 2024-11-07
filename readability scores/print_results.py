@@ -6,19 +6,19 @@ import scores_analysis
 def print_readability_scores(txt):
     """Prints the readability scores and the grade levels corresponding"""
     lix = round(readability_formulas.lix(txt), 2)
-    lix_difficulte = scores_analysis.difficulte_lix(lix)
+    lix_difficulte = scores_analysis.score_analysis('lix',lix)
     rix = round(readability_formulas.rix(txt), 2)
-    rix_difficulte = scores_analysis.difficulte_rix(rix)
+    rix_difficulte = scores_analysis.score_analysis('rix',rix)
     gunning = round(readability_formulas.gunning(txt), 2)
-    gunning_difficulte = scores_analysis.difficulte(gunning)
+    gunning_difficulte = scores_analysis.score_analysis('gunning',gunning)
     fkgl = round(readability_formulas.fkgl(txt), 2)
-    fkgl_difficulte = scores_analysis.difficulte(fkgl)
+    fkgl_difficulte = scores_analysis.score_analysis('fkgl',fkgl)
     coleman_liau = round(readability_formulas.coleman_liau(txt), 2)
-    coleman_liau_difficulte = scores_analysis.difficulte(coleman_liau)
+    coleman_liau_difficulte = scores_analysis.score_analysis('coleman_liau',coleman_liau)
     ari = round(readability_formulas.ari(txt), 2)
-    ari_difficulte = scores_analysis.difficulte(ari)
+    ari_difficulte = scores_analysis.score_analysis('ari',ari)
     smog = round(readability_formulas.smog(txt), 2)
-    smog_difficulte = scores_analysis.difficulte(smog)
+    smog_difficulte = scores_analysis.score_analysis('smog',smog)
     return print (f'''
                 Les indices de lisibilité suivants ont été conçus pour l'Anglais. Les indices de lisibilité LIX
                 et RIX sont les plus fiables pour évaluer le niveau de difficulté des textes français.

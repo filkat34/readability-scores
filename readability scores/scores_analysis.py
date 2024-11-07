@@ -1,47 +1,27 @@
-"""Grade levels list"""
-niveaux=["Maternelle/école élementaire", "Ecole élementaire", "Collège", "Lycée", "Licence", "Master/doctorat"]
-
-
-def difficulte(score):
-    """Returns the grade level for index scores : ARI, FKGL, Coleman-Liau, Gunning Fog, Smog """
-    if score > 15 :
-        return niveaux[5]
-    if score > 12 :
-        return niveaux[4]
-    if score > 9 :
-        return niveaux[3]
-    if score > 6 :
-        return niveaux[2]
-    if score > 3 :
-        return niveaux[1]
-    return niveaux[0]
-
-
-def difficulte_lix(score):
-    """Returns the grade level for index score : LIX"""
-    if score > 60 :
-        return niveaux[5]
-    if score > 56 :
-        return niveaux[4]
-    if score > 40 :
-        return niveaux[3]
-    if score > 28 :
-        return niveaux[2]
-    if score > 10 :
-        return niveaux[1]
-    return niveaux[0]
-
-
-def difficulte_rix(score):
-    """Returns the grade level for index score : RIX"""
-    if score > 8:
-        return niveaux[5]
-    if score >= 7.2 :
-        return niveaux[4]
-    if score >= 4.5 :
-        return niveaux[3]
-    if score >= 1.8 :
-        return niveaux[2]
-    if score >= 0.2 :
-        return niveaux[1]
-    return niveaux[0]
+def score_analysis(formula, score):
+    formula_scales = [['lix',60,56,44,36,32,28,24],
+                  ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
+                  ['fkgl',16,13,10,8,7,6,5],
+                  ['gunning',16,13,10,8,7,6,5],
+                  ['smog',16,13,10,8,7,6,5],
+                  ['ari',16,13,10,8,7,6,5],
+                  ['coleman_liau',17,13,12,10,7,6,5]]
+    for x in range(len(formula_scales)):
+        for y in range(len(formula_scales)):
+            if formula_scales[x][y] == formula :
+                if score > formula_scales[x][y+1]:
+                    return "Très difficile (>Bac+3)"
+                elif score >= formula_scales[x][y+2]:
+                    return "Difficile (Bac+3)"
+                elif score >= formula_scales[x][y+3]:
+                    return "Plutôt difficile (lycée)"
+                elif score >= formula_scales[x][y+4]:
+                    return "Standard (4e-3e)"
+                elif score >= formula_scales[x][y+5]:
+                    return "Plutôt facile (5e)"
+                elif score >= formula_scales[x][y+6]:
+                    return "Facile (6e)"
+                elif score >= formula_scales[x][y+7]:
+                    return "Très facile (CM2)"
+                else:
+                    return "Extrêmement facile (>CM1)"
