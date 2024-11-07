@@ -1,3 +1,5 @@
+"""Modules providing regular expression matching operations, simple modal dialog to 
+get a value from the user and a function ti calculate the square root of a given number"""
 import re
 from math import sqrt
 from tkinter import filedialog
@@ -82,7 +84,7 @@ def rix(txt):
 # Score analysis
 
 def score_analysis(formula, score):
-    '''Returns the grade levels corresponding to a score for each formula'''
+    '''Gives the grade levels corresponding to a score for each formula'''
     formula_scales = [['lix',60,56,44,36,32,28,24],
                   ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
                   ['fkgl',16,13,10,8,7,6,5],
