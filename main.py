@@ -39,7 +39,7 @@ def mots_plusdetroissyllabes(txt):
     """Counts the number of words consisting of more than three syllables"""
     mots_polysyllabiques = 0
     for mot in txt.split():
-        if (len(re.findall(r'[aeiouœéèàâûù]', mot, re.I))-(len(re.findall(r'(au)|(eu)|(ou)|(oû)|(où)|(oi)|(œu)|(ei)|(ai)|(ée)|(que)|(qui)', mot, re.I))+len(re.findall(r'(eau)|(oue)', mot, re.I)))) >= 3 :
+        if (voyelles(mot))-(digrammes(mot)+trigrammes(mot)) >= 3 :
             mots_polysyllabiques+=1
     return mots_polysyllabiques
 
@@ -102,7 +102,7 @@ def score_analysis(formula, score):
                 if score >= formula_scales[x][y+3]:
                     return "Plutôt difficile (lycée)"
                 if score >= formula_scales[x][y+4]:
-                    return "Standard (4e-3e)"
+                    return "Niveau moyen (4e-3e)"
                 if score >= formula_scales[x][y+5]:
                     return "Plutôt facile (5e)"
                 if score >= formula_scales[x][y+6]:
@@ -117,7 +117,7 @@ def score_analysis(formula, score):
 def print_readability_scores(txt):
     """Prints the readability scores and the grade levels corresponding"""
     return print (f'''
-                Les indices de lisibilité suivants ont été conçus pour l'Anglais. Les indices de lisibilité LIX
+                La plupart des indices de lisibilité suivants ont été conçus pour l'Anglais. Les indices de lisibilité LIX
                 et RIX sont les plus fiables pour évaluer le niveau de difficulté des textes français.
 
                 INDICES DE LISIBILITE

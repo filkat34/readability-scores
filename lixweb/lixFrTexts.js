@@ -1,12 +1,57 @@
-const input= "Il était une fois une petite fille de village, la plus jolie qu'on eût su voir : sa mère en était folle, et sa grand-mère plus folle encore. Cette bonne femme lui fit faire un petit chaperon rouge qui lui seyait si bien, que partout on l'appelait le petit Chaperon rouge.";
+const input= "Il était une fois une petite fille de village : si beau probablement.";
 
-function nbMots(str) { 
-    let regex = /(\w+)/g;
-    return str.match(regex).length;
+
+// Text analysis with Regex :
+
+function nbCaracteres(str) {
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  let regex = /(\w)/gi;
+  return str.match(regex).length;
 }
 
+function nbVoyelles(str) {
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  let regex = /[aeiouœ]/gi;
+  return str.match(regex).length;
+}
+
+function nbDigrammes(str) {
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  let regex = /(au)|(eu)|(ou)|(oi)|(œu)|(ei)|(ai)|(ee)|(que)|(qui)/gi;
+  return str.match(regex).length;
+}
+
+function nbTrigrammes(str) {
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  let regex = /(eau)|(oue)/gi;
+  return str.match(regex).length;
+}
+
+function nbSyllabesGraphiques(str) {
+  return nbVoyelles(str) - (nbDigrammes(str)+nbTrigrammes(str));
+}
+
+function nbMots(str) {
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  let regex = /(\w+)/gi;
+  return str.match(regex).length;
+}
+
+function nbMotsPolysyllabiques(str) {
+  let punctuation = /[\.,?!;:]/g;
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(punctuation, "").replace("  ", " ");
+  let mots = str.split(' ');
+  let motsPolysyllabiques = 0;
+  let voyelles = 0
+  for (const mot in mots){
+    if ((nbVoyelles(mot) - nbDigrammes(mot) - nbTrigrammes(mot)) >= 3){
+      motsPolysyllabiques++;}
+return voyelles;}
+    }
+
 function nbMotsLongs(str) { 
-  let regex = /(\w\w\w\w\w\w\w+)/g;
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  let regex = /(\w{7,})/g;
   return str.match(regex).length;
 }
 
@@ -15,33 +60,26 @@ function nbPhrases(str){
   return str.match(regex).length;
 }
 
-function scoreLix(str){
-  return (nbMots(str)/nbPhrases(str))+(100*(nbMotsLongs(str)/nbMots(str)));
-}
 
-function niveauDifficulte(str){
-  if (scoreLix(str) > 60) {
-   return "Très difficile";
-  }else if (scoreLix(str) >= 50) {
-    return "Difficile";
-  }else if (scoreLix(str) >= 40) {
-        return "Moyenne";
-  }else if (scoreLix(str) >= 30){
-        return "Facile";
-  }else {
-        return "Très facile";}
-}
-
+let Caracteres = nbCaracteres(input);
+let Voyelles = nbVoyelles(input);
+let Digrammes = nbDigrammes(input);
+let Trigrammes = nbTrigrammes(input);
+let Syllabes = nbSyllabesGraphiques(input)
 let Mots = nbMots(input);
 let MotsLongs = nbMotsLongs(input);
+let MotsPolysyllabiques =  nbMotsPolysyllabiques(input);
 let Phrases = nbPhrases(input);
-let Lix = scoreLix(input)
-let Difficulte = niveauDifficulte(input)
+
 
 console.log(
-'Score LIX.................. ' + Lix+'\n'+
-'Niveau de difficulté....... ' + Difficulte+'\n'+
-'Nombre de mots............. ' + Mots+'\n'+
-'Nombre de mots longs....... ' + MotsLongs+'\n'+
-'Nombre de phrases.......... ' + Phrases
+'Nombre de caractères.............. ' + Caracteres+'\n'+
+'Nombre de voyelles................ ' + Voyelles+'\n'+
+'Nombre de digrammes............... ' + Digrammes+'\n'+
+'Nombre de trigrammes.............. ' + Trigrammes+'\n'+
+'Nombre de syllabes................ ' + Syllabes+'\n'+
+'Nombre de mots.................... ' + Mots+'\n'+
+'Nombre de mots longs.............. ' + MotsLongs+'\n'+
+'Nombre de mots polysyllabiques.... ' + MotsPolysyllabiques+'\n'+
+'Nombre de phrases................. ' + Phrases
 )
