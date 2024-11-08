@@ -39,7 +39,7 @@ def mots_plusdetroissyllabes(txt):
     """Counts the number of words consisting of more than three syllables"""
     mots_polysyllabiques = 0
     for mot in txt.split():
-        if (voyelles(mot))-(digrammes(mot)+trigrammes(mot)) >= 3 :
+        if (syllabes_graphiques(mot)) >= 3 :
             mots_polysyllabiques+=1
     return mots_polysyllabiques
 

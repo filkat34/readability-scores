@@ -1,30 +1,51 @@
-const input= "Il était une fois une petite fille de village : si beau probablement.";
+const input= "Il était une fois un personnage très probrablement affreux anticonstitutionnellement.";
 
 
 // Text analysis with Regex :
 
 function nbCaracteres(str) {
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
   let regex = /(\w)/gi;
   return str.match(regex).length;
 }
 
 function nbVoyelles(str) {
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
   let regex = /[aeiouœ]/gi;
-  return str.match(regex).length;
+  let voyelles = str.match(regex)
+  if(voyelles==null){
+    voyelles = 0
+  }
+  else{
+    voyelles = str.match(regex).length
+  }
+  return voyelles;
 }
 
 function nbDigrammes(str) {
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
   let regex = /(au)|(eu)|(ou)|(oi)|(œu)|(ei)|(ai)|(ee)|(que)|(qui)/gi;
-  return str.match(regex).length;
+  let digrammes = str.match(regex);
+  if(digrammes==null){
+    digrammes = 0
+  }
+  else{
+    digrammes = str.match(regex).length
+  }
+  return digrammes;
 }
 
 function nbTrigrammes(str) {
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
   let regex = /(eau)|(oue)/gi;
-  return str.match(regex).length;
+  let trigrammes = str.match(regex)
+  if(trigrammes==null){
+    trigrammes = 0;
+  }
+  else{
+    trigrammes = str.match(regex).length
+  }
+  return trigrammes;
 }
 
 function nbSyllabesGraphiques(str) {
@@ -32,34 +53,63 @@ function nbSyllabesGraphiques(str) {
 }
 
 function nbMots(str) {
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
   let regex = /(\w+)/gi;
-  return str.match(regex).length;
+  let mots = str.match(regex)
+  if(mots==null){
+    mots = 0
+  }
+  else{
+    mots = str.match(regex).length
+  }
+  return mots;
 }
 
 function nbMotsPolysyllabiques(str) {
-  let punctuation = /[\.,?!;:]/g;
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(punctuation, "").replace("  ", " ");
+  let punctuation = /[.,?!;:]/g;
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "").replace(punctuation, "").replace("  ", " ");
   let mots = str.split(' ');
   let motsPolysyllabiques = 0;
-  let voyelles = 0
   for (const mot in mots){
-    if ((nbVoyelles(mot) - nbDigrammes(mot) - nbTrigrammes(mot)) >= 3){
-      motsPolysyllabiques++;}
-return voyelles;}
+    if (nbSyllabesGraphiques(mots[mot])>=3){
+    motsPolysyllabiques++;
+  }
     }
+  return motsPolysyllabiques
+  }
+  
 
 function nbMotsLongs(str) { 
-  str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
   let regex = /(\w{7,})/g;
-  return str.match(regex).length;
+  let motsLongs = str.match(regex)
+  if(motsLongs==null){
+    motsLongs = 0
+  }
+  else{
+    motsLongs = str.match(regex).length
+  }
+  return motsLongs;
 }
 
 function nbPhrases(str){
-  let regex = /(\w\w+\s?[.?!])/g;
-  return str.match(regex).length;
+  let regex = /(\w\w+\s?[.?!])/gi;
+  let phrases = str.match(regex)
+  if(phrases==null){
+    phrases = 1;
+  }
+  else{
+    phrases = str.match(regex).length;
+  }
+  return phrases;
 }
 
+
+// Readability formulas :
+
+
+
+// Print text statistics and readability scores :
 
 let Caracteres = nbCaracteres(input);
 let Voyelles = nbVoyelles(input);
