@@ -24,7 +24,7 @@ function nbVoyelles(str) {
 
 function nbDigrammes(str) {
   str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
-  let regex = /(au)|(eu)|(ou)|(oi)|(œu)|(ei)|(ai)|(ee)|(que)|(qui)/gi;
+  let regex = /(au)|(eu)|(ou)|(oi)|(œu)|(ei)|(ai)|(ee)|(ue)|(ui)|(ua)/gi;
   let digrammes = str.match(regex);
   if(digrammes==null){
     digrammes = 0
@@ -77,7 +77,6 @@ function nbMotsPolysyllabiques(str) {
     }
   return motsPolysyllabiques
   }
-  
 
 function nbMotsLongs(str) { 
   str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
@@ -107,9 +106,77 @@ function nbPhrases(str){
 
 // Readability formulas :
 
+function scoreLix(str){
+  return nbMots(str)/nbPhrases(str)+100*(nbMotsLongs(str)/nbMots(str));
+}
 
+function scoreRix(str){
+  return nbMotsLongs(str)/nbPhrases(str);
+}
 
-// Print text statistics and readability scores :
+function scoreFkgl(str){
+  return 0.39*(nbMots(str)/nbPhrases(str))+11.8*(nbSyllabesGraphiques(str)/nbMots(str))-15.59;
+}
+
+function scoreGunningFog(str){
+  return 0.4*(nbMots(str)/nbPhrases(str))+100*(nbMotsPolysyllabiques(str)/nbMots(str));
+}
+
+function scoreSMOG(str){
+  return 1.043*(Math.sqrt((nbMotsPolysyllabiques(str)*(30/nbPhrases(str)))))+3.1291;
+}
+
+function scoreColemanLiau(str){
+  return 0.0588*((nbCaracteres(str)/nbMots(str))*100)-0.296*((nbPhrases(str)/nbMots(str))*100)-15.8;
+}
+
+function scoreAri(str){
+  return 4.71*(nbCaracteres(str)/nbMots(str))+0.5*(nbMots(str)/nbPhrases(str))-21.43;
+}
+
+// Readability scores analysis :
+
+function scoreAnalysis(formula, score){
+  let formula_scales = [['lix',60,56,44,36,32,28,24],
+                  ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
+                  ['fkgl',16,13,10,8,7,6,5],
+                  ['gunning',16,13,10,8,7,6,5],
+                  ['smog',16,13,10,8,7,6,5],
+                  ['ari',16,13,10,8,7,6,5],
+                  ['coleman_liau',17,13,12,10,7,6,5]
+                ]
+  for (const x in formula_scales.length) {
+    for (const y in formula_scales.length) {
+      if (formula_scales[x][y] == formula){
+        if (score > formula_scales[x][y+1]){
+            return "Très difficile (>Bac+3)"
+          }
+        if (score >= formula_scales[x][y+2]){
+            return "Difficile (Bac+3)"
+          }
+        if (score >= formula_scales[x][y+3]){
+            return "Plutôt difficile (lycée)"
+          }
+        if (score >= formula_scales[x][y+4]){
+            return "Niveau moyen (4e-3e)"
+          }
+        if (score >= formula_scales[x][y+5]){
+            return "Plutôt facile (5e)"
+          }
+        if (score >= formula_scales[x][y+6]){
+            return "Facile (6e)"
+          }
+        if (score >= formula_scales[x][y+7]){
+            return "Très facile (CM2)"}
+        else {
+          return "Extrêmement facile (>CM1)"
+              }
+            }
+          }
+        }
+      }
+
+// Print text statistics and readability analysis :
 
 let Caracteres = nbCaracteres(input);
 let Voyelles = nbVoyelles(input);
@@ -121,15 +188,36 @@ let MotsLongs = nbMotsLongs(input);
 let MotsPolysyllabiques =  nbMotsPolysyllabiques(input);
 let Phrases = nbPhrases(input);
 
+let lix = scoreLix(input).toFixed(1)
+let rix = scoreRix(input).toFixed(1)
+let fkgl = scoreFkgl(input).toFixed(1)
+let gunnningFog = scoreGunningFog(input).toFixed(1)
+let smog = scoreSMOG(input).toFixed(1)
+let colemanLiau = scoreColemanLiau(input).toFixed(1)
+let ari = scoreAri(input).toFixed(1)
+
+let lixAnalysis = scoreAnalysis('lix',lix)
+
 
 console.log(
-'Nombre de caractères.............. ' + Caracteres+'\n'+
-'Nombre de voyelles................ ' + Voyelles+'\n'+
-'Nombre de digrammes............... ' + Digrammes+'\n'+
-'Nombre de trigrammes.............. ' + Trigrammes+'\n'+
-'Nombre de syllabes................ ' + Syllabes+'\n'+
-'Nombre de mots.................... ' + Mots+'\n'+
-'Nombre de mots longs.............. ' + MotsLongs+'\n'+
-'Nombre de mots polysyllabiques.... ' + MotsPolysyllabiques+'\n'+
-'Nombre de phrases................. ' + Phrases
+'STATISTIQUES DU TEXTE'+'\n'+
+'---------------------'+'\n\n'+
+'Nombre de caractères.................. ' + Caracteres+'\n'+
+'Nombre de voyelles.................... ' + Voyelles+'\n'+
+'Nombre de digrammes................... ' + Digrammes+'\n'+
+'Nombre de trigrammes.................. ' + Trigrammes+'\n'+
+'Nombre de syllabes.................... ' + Syllabes+'\n'+
+'Nombre de mots........................ ' + Mots+'\n'+
+'Nombre de mots longs.................. ' + MotsLongs+'\n'+
+'Nombre de mots polysyllabiques........ ' + MotsPolysyllabiques+'\n'+
+'Nombre de phrases..................... ' + Phrases+'\n\n\n'+
+'INDICES DE LISIBILITE'+'\n'+
+'---------------------'+'\n\n'+
+'LIX................................... ' + lix+' : '+ lixAnalysis + '\n'+
+'RIX................................... ' + rix+'\n'+
+'Flesch-Kincaid grade level............ ' + fkgl+'\n'+
+'Gunning Fog index..................... ' + gunnningFog+'\n'+
+'Simple Measure of Gobbledygook index.. ' + smog+'\n'+
+'Coleman-Liau index.................... ' + colemanLiau+'\n'+
+'Automated Readability Index........... ' + ari
 )

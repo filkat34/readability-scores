@@ -17,7 +17,7 @@ def voyelles(txt):
 
 def digrammes(txt):
     """Counts the number of vowel digraphs"""
-    return len(re.findall(r'(au)|(eu)|(ou)|(oû)|(où)|(oi)|(œu)|(ei)|(ai)|(ée)|(que)|(qui)', txt, re.I))
+    return len(re.findall(r'(au)|(eu)|(ou)|(oû)|(où)|(oi)|(œu)|(ei)|(ai)|(ée)|(ue)|(ui)|(ua)', txt, re.I))
 
 def trigrammes(txt):
     """Counts the number of vowel trigraphs"""
