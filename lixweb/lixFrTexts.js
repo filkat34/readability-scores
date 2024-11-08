@@ -149,32 +149,32 @@ function scoreAnalysis(formula, score){
     for (const y in formula_scales.length) {
       if (formula_scales[x][y] == formula){
         if (score > formula_scales[x][y+1]){
-            return "Très difficile (>Bac+3)"
+            return "Très difficile (>Bac+3)";
           }
         if (score >= formula_scales[x][y+2]){
-            return "Difficile (Bac+3)"
+            return "Difficile (Bac+3)";
           }
         if (score >= formula_scales[x][y+3]){
-            return "Plutôt difficile (lycée)"
+            return "Plutôt difficile (lycée)";
           }
         if (score >= formula_scales[x][y+4]){
-            return "Niveau moyen (4e-3e)"
+            return "Niveau moyen (4e-3e)";
           }
         if (score >= formula_scales[x][y+5]){
-            return "Plutôt facile (5e)"
+            return "Plutôt facile (5e)";
           }
         if (score >= formula_scales[x][y+6]){
-            return "Facile (6e)"
+            return "Facile (6e)";
           }
         if (score >= formula_scales[x][y+7]){
-            return "Très facile (CM2)"}
-        else {
-          return "Extrêmement facile (>CM1)"
+            return "Très facile (CM2)";
+          }
+        return "Extrêmement facile (>CM1)"
               }
             }
           }
         }
-      }
+      
 
 // Print text statistics and readability analysis :
 
