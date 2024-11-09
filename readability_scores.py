@@ -21,7 +21,7 @@ def digrammes(txt):
 
 def trigrammes(txt):
     """Counts the number of vowel trigraphs"""
-    return len(re.findall(r'(eau)|(oue)', txt, re.I))
+    return len(re.findall(r'(eau)|(oue)|(aie)', txt, re.I))
 
 def syllabes_graphiques(txt):
     """Counts the number of written syllables by substracting the number of bigraphs and trigraphs from the number of vowels"""
@@ -142,7 +142,7 @@ def print_text_statistics(txt):
                 Syllabes graphiques................ {syllabes_graphiques(txt)}
                 Mots............................... {mots(txt)}
                 Mots Longs (>6 lettres)............ {mots_plusdesixlettres(txt)}
-                Mots complexes (>3 syllabes)....... {mots_plusdetroissyllabes(txt)}
+                Mots complexes (>2 syllabes)....... {mots_plusdetroissyllabes(txt)}
                 Phrases............................ {phrases(txt)}
                 ''')
 

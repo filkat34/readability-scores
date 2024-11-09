@@ -1,5 +1,4 @@
-const input= "Il était une fois un personnage très probrablement affreux anticonstitutionnellement.";
-
+const input= "Longtemps, je me suis couché de bonne heure..."
 
 // Text analysis with Regex :
 
@@ -37,7 +36,7 @@ function nbDigrammes(str) {
 
 function nbTrigrammes(str) {
   str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
-  let regex = /(eau)|(oue)/gi;
+  let regex = /(eau)|(oue)|(aie)/gi;
   let trigrammes = str.match(regex)
   if(trigrammes==null){
     trigrammes = 0;
@@ -145,31 +144,31 @@ function scoreAnalysis(formula, score){
                   ['ari',16,13,10,8,7,6,5],
                   ['coleman_liau',17,13,12,10,7,6,5]
                 ]
-  for (const x in formula_scales) {
-    for (const y in formula_scales) {
-      if (formula_scales[x][y] == formula){
-        if (score > formula_scales[x][y+1]){
+  for (let column in formula_scales) {
+    for (let row in formula_scales) {
+      if (formula_scales[column][row] == formula){
+        if (score > formula_scales[column][1]){
             return "Très difficile (>Bac+3)";
           }
-        if (score >= formula_scales[x][y+2]){
+        if (score >= formula_scales[column][2]){
             return "Difficile (Bac+3)";
           }
-        if (score >= formula_scales[x][y+3]){
+        if (score >= formula_scales[column][3]){
             return "Plutôt difficile (lycée)";
           }
-        if (score >= formula_scales[x][y+4]){
+        if (score >= formula_scales[column][4]){
             return "Niveau moyen (4e-3e)";
           }
-        if (score >= formula_scales[x][y+5]){
+        if (score >= formula_scales[column][5]){
             return "Plutôt facile (5e)";
           }
-        if (score >= formula_scales[x][y+6]){
+        if (score >= formula_scales[column][6]){
             return "Facile (6e)";
           }
-        if (score >= formula_scales[x][y+7]){
+        if (score >= formula_scales[column][7]){
             return "Très facile (CM2)";
           }
-    return "Extrêmement facile (>CM1)";
+        return "Extrêmement facile (>CM1)";
               }
             }
           }
@@ -178,46 +177,52 @@ function scoreAnalysis(formula, score){
 
 // Print text statistics and readability analysis :
 
-let Caracteres = nbCaracteres(input);
-let Voyelles = nbVoyelles(input);
-let Digrammes = nbDigrammes(input);
-let Trigrammes = nbTrigrammes(input);
-let Syllabes = nbSyllabesGraphiques(input)
-let Mots = nbMots(input);
-let MotsLongs = nbMotsLongs(input);
-let MotsPolysyllabiques =  nbMotsPolysyllabiques(input);
-let Phrases = nbPhrases(input);
+const Caracteres = nbCaracteres(input);
+const Voyelles = nbVoyelles(input);
+const Digrammes = nbDigrammes(input);
+const Trigrammes = nbTrigrammes(input);
+const Syllabes = nbSyllabesGraphiques(input)
+const Mots = nbMots(input);
+const MotsLongs = nbMotsLongs(input);
+const MotsPolysyllabiques =  nbMotsPolysyllabiques(input);
+const Phrases = nbPhrases(input);
 
-let lix = scoreLix(input).toFixed(1)
-let rix = scoreRix(input).toFixed(1)
-let fkgl = scoreFkgl(input).toFixed(1)
-let gunnningFog = scoreGunningFog(input).toFixed(1)
-let smog = scoreSMOG(input).toFixed(1)
-let colemanLiau = scoreColemanLiau(input).toFixed(1)
-let ari = scoreAri(input).toFixed(1)
+const lix = scoreLix(input).toFixed(1)
+const rix = scoreRix(input).toFixed(1)
+const fkgl = scoreFkgl(input).toFixed(1)
+const gunnningFog = scoreGunningFog(input).toFixed(1)
+const smog = scoreSMOG(input).toFixed(1)
+const colemanLiau = scoreColemanLiau(input).toFixed(1)
+const ari = scoreAri(input).toFixed(1)
 
-let lixAnalysis = scoreAnalysis('lix',lix)
+const lixAnalysis = scoreAnalysis('lix',lix)
+const rixAnalysis = scoreAnalysis('rix', rix)
+const fkglAnalysis = scoreAnalysis('fkgl', fkgl)
+const gunnningFogAnalysis = scoreAnalysis('gunning', gunnningFog)
+const smogAnalysis = scoreAnalysis('smog', smog)
+const colemanLiauAnalysis = scoreAnalysis('coleman_liau', colemanLiau)
+const ariAnalysis = scoreAnalysis('ari', ari)
 
 
 console.log(
 'STATISTIQUES DU TEXTE'+'\n'+
 '---------------------'+'\n\n'+
-'Nombre de caractères.................. ' + Caracteres+'\n'+
-'Nombre de voyelles.................... ' + Voyelles+'\n'+
-'Nombre de digrammes................... ' + Digrammes+'\n'+
-'Nombre de trigrammes.................. ' + Trigrammes+'\n'+
-'Nombre de syllabes.................... ' + Syllabes+'\n'+
-'Nombre de mots........................ ' + Mots+'\n'+
-'Nombre de mots longs.................. ' + MotsLongs+'\n'+
-'Nombre de mots polysyllabiques........ ' + MotsPolysyllabiques+'\n'+
-'Nombre de phrases..................... ' + Phrases+'\n\n\n'+
+'Caractères.................................. ' + Caracteres+'\n'+
+'Voyelles.................................... ' + Voyelles+'\n'+
+'Digrammes................................... ' + Digrammes+'\n'+
+'Trigrammes.................................. ' + Trigrammes+'\n'+
+'Syllabes.................................... ' + Syllabes+'\n'+
+'Mots........................................ ' + Mots+'\n'+
+'Mots longs (>6 caractères).................. ' + MotsLongs+'\n'+
+'Mots polysyllabiques (>2 syllabes).......... ' + MotsPolysyllabiques+'\n'+
+'Phrases..................................... ' + Phrases+'\n\n\n'+
 'INDICES DE LISIBILITE'+'\n'+
 '---------------------'+'\n\n'+
-'LIX................................... ' + lix+' : '+ lixAnalysis + '\n'+
-'RIX................................... ' + rix+'\n'+
-'Flesch-Kincaid grade level............ ' + fkgl+'\n'+
-'Gunning Fog index..................... ' + gunnningFog+'\n'+
-'Simple Measure of Gobbledygook index.. ' + smog+'\n'+
-'Coleman-Liau index.................... ' + colemanLiau+'\n'+
-'Automated Readability Index........... ' + ari
+'LIX......................................... ' + lix+' : '+ lixAnalysis + '\n'+
+'RIX......................................... ' + rix+' : '+ rixAnalysis + '\n'+ 
+'Flesch-Kincaid grade level.................. ' + fkgl+' : '+ fkglAnalysis + '\n'+
+'Gunning Fog index........................... ' + gunnningFog+' : '+ gunnningFogAnalysis + '\n'+
+'Simple Measure of Gobbledygook index........ ' + smog+' : '+ smogAnalysis + '\n'+
+'Coleman-Liau index.......................... ' + colemanLiau+' : '+ colemanLiauAnalysis + '\n'+
+'Automated Readability Index................. ' + ari+' : '+ ariAnalysis
 )
