@@ -145,8 +145,8 @@ function scoreAnalysis(formula, score){
                   ['ari',16,13,10,8,7,6,5],
                   ['coleman_liau',17,13,12,10,7,6,5]
                 ]
-  for (const x in formula_scales.length) {
-    for (const y in formula_scales.length) {
+  for (const x in formula_scales) {
+    for (const y in formula_scales) {
       if (formula_scales[x][y] == formula){
         if (score > formula_scales[x][y+1]){
             return "Très difficile (>Bac+3)";
@@ -169,7 +169,7 @@ function scoreAnalysis(formula, score){
         if (score >= formula_scales[x][y+7]){
             return "Très facile (CM2)";
           }
-        return "Extrêmement facile (>CM1)"
+    return "Extrêmement facile (>CM1)";
               }
             }
           }
