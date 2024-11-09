@@ -84,32 +84,26 @@ def rix(txt):
 # Score analysis
 
 def score_analysis(formula, score):
-    '''Gives the grade levels corresponding to a score for each formula'''
-    formula_scales = [['lix',60,56,44,36,32,28,24],
-                  ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
-                  ['fkgl',16,13,10,8,7,6,5],
-                  ['gunning',16,13,10,8,7,6,5],
-                  ['smog',16,13,10,8,7,6,5],
-                  ['ari',16,13,10,8,7,6,5],
-                  ['coleman_liau',17,13,12,10,7,6,5]]
-    for x in range(len(formula_scales)+1):
-        for y in range(len(formula_scales)+1):
-            if formula_scales[x][y] == formula :
-                if score > formula_scales[x][y+1]:
-                    return "Très difficile (>Bac+3)"
-                if score >= formula_scales[x][y+2]:
-                    return "Difficile (Bac+3)"
-                if score >= formula_scales[x][y+3]:
-                    return "Plutôt difficile (lycée)"
-                if score >= formula_scales[x][y+4]:
-                    return "Niveau moyen (4e-3e)"
-                if score >= formula_scales[x][y+5]:
-                    return "Plutôt facile (5e)"
-                if score >= formula_scales[x][y+6]:
-                    return "Facile (6e)"
-                if score >= formula_scales[x][y+7]:
-                    return "Très facile (CM2)"
-                return "Extrêmement facile (>CM1)"
+    '''Gives the reading levels corresponding to a score for each formula'''
+    formula_scales = [['lix',59,50,40,30],
+                        ['rix',7.1,5.3,2.9,1.8],
+                        ['fkgl',15,11,5,1],
+                        ['gunning',15,8,5,1],
+                        ['smog',15,8,5,1],
+                        ['ari',15,8,5,1],
+                        ['coleman_liau',15,8,5,1]]
+    for column in range(7):
+        for row in range(5):
+            if formula_scales[column][row] == formula :
+                if score > formula_scales[column][1]:
+                    return "Très difficile"
+                if score > formula_scales[column][2]:
+                    return "Difficile"
+                if score > formula_scales[column][3]:
+                    return "Intermédiaire"
+                if score > formula_scales[column][4]:
+                    return "Facile"
+                return "Très facile"
 
 
 # Print results

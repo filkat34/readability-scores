@@ -118,7 +118,7 @@ function scoreFkgl(str){
 }
 
 function scoreGunningFog(str){
-  return 0.4*(nbMots(str)/nbPhrases(str))+100*(nbMotsPolysyllabiques(str)/nbMots(str));
+  return 0.4*((nbMots(str)/nbPhrases(str))+100*(nbMotsPolysyllabiques(str)/nbMots(str)));
 }
 
 function scoreSMOG(str){
@@ -136,43 +136,34 @@ function scoreAri(str){
 // Readability scores analysis :
 
 function scoreAnalysis(formula, score){
-  let formula_scales = [['lix',60,56,44,36,32,28,24],
-                  ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
-                  ['fkgl',16,13,10,8,7,6,5],
-                  ['gunning',16,13,10,8,7,6,5],
-                  ['smog',16,13,10,8,7,6,5],
-                  ['ari',16,13,10,8,7,6,5],
-                  ['coleman_liau',17,13,12,10,7,6,5]
-                ]
+  let formula_scales = [['lix',59,50,40,30],
+          ['rix',7.1,5.3,2.9,1.8],
+          ['fkgl',15,11,5,1],
+          ['gunning',15,8,5,1],
+          ['smog',15,8,5,1],
+          ['ari',15,8,5,1],
+          ['coleman_liau',15,8,5,1]
+          ]
   for (let column in formula_scales) {
-    for (let row in formula_scales) {
-      if (formula_scales[column][row] == formula){
-        if (score > formula_scales[column][1]){
-            return "Très difficile (>Bac+3)";
-          }
-        if (score >= formula_scales[column][2]){
-            return "Difficile (Bac+3)";
-          }
-        if (score >= formula_scales[column][3]){
-            return "Plutôt difficile (lycée)";
-          }
-        if (score >= formula_scales[column][4]){
-            return "Niveau moyen (4e-3e)";
-          }
-        if (score >= formula_scales[column][5]){
-            return "Plutôt facile (5e)";
-          }
-        if (score >= formula_scales[column][6]){
-            return "Facile (6e)";
-          }
-        if (score >= formula_scales[column][7]){
-            return "Très facile (CM2)";
-          }
-        return "Extrêmement facile (>CM1)";
-              }
-            }
-          }
-        }
+  for (let row in formula_scales) {
+  if (formula_scales[column][row] == formula){
+  if (score > formula_scales[column][1]){
+      return "Très difficile";
+  }
+  if (score > formula_scales[column][2]){
+      return "Difficile";
+  }
+  if (score > formula_scales[column][3]){
+      return "Intermédiaire";
+  }
+  if (score > formula_scales[column][4]){
+      return "Facile";
+  }
+  return "Très facile";
+      }
+      }
+  }
+}
       
 
 // Print text statistics and readability analysis :

@@ -71,35 +71,28 @@ h6 {
         <header>
             <h1>📚 Indices de lisibilité pour textes français 🇫🇷</h1>
         </header>
+        <br>
         <p>
-            L'objectif de ce programme est de permettre, à partir d'un texte brut fourni par l'utilisateur, 
-            le calcul de six scores de lisibilité : LIX, RIX, Automated Readability Index (ARI), Gunning Fog index,
-            Coleman-Liau index, Flesch-Kincaid Grade Level (FKGL) Simple Measure of Gobbledygook index (SMOG).
+            L'objectif de ce programme est d'abord de permettre, grâce à l'usage d'expressions régulières, l'analyse d'un texte brut fourni 
+            par l'utilisateur pour en extraire plusieurs variables : nombre de caractères, de voyelles, de digrammes, de trigrammes, 
+            de syllabes graphiques, de mots, de mots de plus de six caractères, de mots de plus de trois syllabes graphiques, de phrases.
         </p>
         <p>
-            Ce programme permet aussi l'affichage des statistiques du texte sur lesquelles il s'est fondé pour effectuer 
-            le calcul. Il affiche les nombres de caractères, voyelles, digrammes, trigrammes, syllabes, mots mots de plus 
-            de six caractères, mots de plus de trois syllabes, phrases.
+            En se fondant sur cette analyse du texte, le programme permet ensuite le calcul et l'inteprétation de six scores de lisibilité : 
+            LIX, RIX, Automated Readability Index (ARI), Gunning Fog index, Coleman-Liau index, Flesch-Kincaid Grade Level (FKGL),
+            Simple Measure of Gobbledygook index (SMOG).
         </p>
-        <p>
-            Ce programme repose entièrement sur les expressions régulières pour établir les variables qui servent au calcul
-             de ces scores de lisibilité. Si les expressions régulières apportent une réponse algorithmique efficace pour la 
-             grande majorité des variables à établir, elles se revèlent moins précises, bien que souvent suffisantes, pour 
-             calculer le nombre de syllabes d'un mot. Cela est étroitement lié à la complexité et 
-             à l'irrégularité de la langue française.
-        </p>
-        <p>
-            Pour faire face à ce problème et afin que les résultats soient fiables, il a été décidé de procéder au décompte 
-            des syllabes graphiques et non phoniques : pour cela, on comptabilise d'abord le nombre de voyelles dans un mot 
-            donné ; ensuite, on soustrait à cette somme le nombre de digrammes et de trigrammes qui s'y trouvent.
-        </p>
+        <br>
 
-        <p>Ajoutez un fichier en texte brut (.txt) pour calculer ses scores de lisibilité ou copiez-collez un texte.</p>
+        <p style="color:#2bbc8a;text-align: center;">
+            Voir le projet sur <a href="https://github.com/filkat34/readability-scores" target="_blank">GitHub</a>
+        </p>
+        <br>
+        <p style="align-items: center;text-align: center;">Ajoutez un fichier en texte brut (.txt) pour calculer ses scores de lisibilité.<br><br>
+            <input type="file" accept=".txt" onchange="scoreText()"/><br />
+        </p>
         
       
-        <br>
-       <input type="file" accept=".txt" onchange="scoreText()" /><br />
-        <br>
 
         <p class="stats" style="color:#2bbc8a; font-size:20px"></p>
         <p class="caracteres"></p>
@@ -266,11 +259,11 @@ h6 {
         }
 
         function scoreGunningFog(str){
-        return 0.4*(nbMots(str)/nbPhrases(str))+100*(nbMotsPolysyllabiques(str)/nbMots(str));
+        return 0.4*((nbMots(str)/nbPhrases(str))+100*(nbMotsPolysyllabiques(str)/nbMots(str)));
         }
 
         function scoreSMOG(str){
-        return 1.043*(Math.sqrt((nbMotsPolysyllabiques(str)*(30/nbPhrases(str)))))+3.1291;
+        return 1.043*Math.sqrt((nbMotsPolysyllabiques(str)*(30/nbPhrases(str))))+3.1291;
         }
 
         function scoreColemanLiau(str){
@@ -284,39 +277,30 @@ h6 {
         // Readability scores analysis :
 
         function scoreAnalysis(formula, score){
-        let formula_scales = [['lix',60,56,44,36,32,28,24],
-                        ['rix',8,7.2,4.5,3.0,2.4,1.8,1.3],
-                        ['fkgl',16,13,10,8,7,6,5],
-                        ['gunning',16,13,10,8,7,6,5],
-                        ['smog',16,13,10,8,7,6,5],
-                        ['ari',16,13,10,8,7,6,5],
-                        ['coleman_liau',12,11,8,5,3,2,1]
+        let formula_scales = [['lix',59,50,40,30],
+                        ['rix',7.1,5.3,2.9,1.8],
+                        ['fkgl',15,11,5,1],
+                        ['gunning',15,8,5,1],
+                        ['smog',15,8,5,1],
+                        ['ari',15,8,5,1],
+                        ['coleman_liau',15,8,5,1]
                         ]
         for (let column in formula_scales) {
             for (let row in formula_scales) {
             if (formula_scales[column][row] == formula){
                 if (score > formula_scales[column][1]){
-                    return "Très difficile (>Bac+3)";
+                    return "Très difficile";
                 }
-                if (score >= formula_scales[column][2]){
-                    return "Difficile (Bac+3)";
+                if (score > formula_scales[column][2]){
+                    return "Difficile";
                 }
-                if (score >= formula_scales[column][3]){
-                    return "Plutôt difficile (lycée)";
+                if (score > formula_scales[column][3]){
+                    return "Intermédiaire";
                 }
-                if (score >= formula_scales[column][4]){
-                    return "Niveau moyen (4e-3e)";
+                if (score > formula_scales[column][4]){
+                    return "Facile";
                 }
-                if (score >= formula_scales[column][5]){
-                    return "Plutôt facile (5e)";
-                }
-                if (score >= formula_scales[column][6]){
-                    return "Facile (6e)";
-                }
-                if (score >= formula_scales[column][7]){
-                    return "Très facile (CM2)";
-                }
-                return "Extrêmement facile (>CM1)";
+                return "Très facile";
                     }
                     }
                 }
@@ -337,13 +321,13 @@ h6 {
             phrases.innerText='Phrases..................................... ' + nbPhrases(reader.result);
             
             scores.innerText='Scores de lisibilité';
-            lix.innerText = 'LIX......................................... ' + scoreLix(reader.result).toFixed(1)+' : '+ scoreAnalysis('lix', scoreLix(reader.result));
-            rix.innerText ='RIX......................................... ' + scoreRix(reader.result).toFixed(1)+' : '+ scoreAnalysis('rix', scoreRix(reader.result));
-            fkgl.innerText='Flesch-Kincaid grade level.................. ' + scoreFkgl(reader.result).toFixed(1)+' : '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
-            gunningFog.innerText='Gunning Fog index........................... ' + scoreGunningFog(reader.result).toFixed(1)+' : '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
-            smog.innerText='Simple Measure of Gobbledygook index........ ' + scoreSMOG(reader.result).toFixed(1)+' : '+ scoreAnalysis('smog', scoreSMOG(reader.result));
-            colemanliau.innerText='Coleman-Liau index.......................... ' + scoreColemanLiau(reader.result).toFixed(1)+' : '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
-            ari.innerText='Automated Readability Index................. ' + scoreAri(reader.result).toFixed(1)+' : '+ scoreAnalysis('ari', scoreAri(reader.result));
+            lix.innerText = 'LIX......................................... ' + scoreLix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(reader.result));
+            rix.innerText ='RIX......................................... ' + scoreRix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(reader.result));
+            fkgl.innerText='Flesch-Kincaid grade level.................. ' + scoreFkgl(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
+            gunningFog.innerText='Gunning Fog index........................... ' + scoreGunningFog(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
+            smog.innerText='Simple Measure of Gobbledygook index........ ' + scoreSMOG(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(reader.result));
+            colemanliau.innerText='Coleman-Liau index.......................... ' + scoreColemanLiau(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
+            ari.innerText='Automated Readability Index................. ' + scoreAri(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(reader.result));
             },
             false,
         );
