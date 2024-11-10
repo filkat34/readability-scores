@@ -44,6 +44,35 @@
                 color:#2bbc8a;
                 text-align: center;
                 }
+                * {
+                box-sizing: border-box;
+                }
+
+                .column {
+                    float: left;
+                    width: 50%;
+                    padding: 10px;
+                }
+
+                .row:after {
+                content: "";
+                display: table;
+                clear: both;
+                }
+
+                @media screen and (max-width: 600px) {
+                .column {
+                    width: 100%;
+                }
+                }
+                
+                table{
+                    width: 100%;
+                }
+                td, th {
+                    width:25%;
+                }
+                         
 
         </style>
     </head>
@@ -74,31 +103,90 @@
             <input type="file" accept=".txt" onchange="scoreTextFile()"/><br />
         </p>
 
-        <p class="stats" style="color:#2bbc8a; font-size:20px"></p>
-        <p class="caracteres"></p>
-        <p class="voyelles"></p>
-        <p class="digrammes"></p>
-        <p class="trigrammes"></p>
-        <p class="syllabes"></p>
-        <p class="mots"></p>
-        <p class="motslongs"></p>
-        <p class="motspolysyllabiques"></p>
-        <p class="phrases"></p>
+       <div class="row">
+            <div class="column">
+                <table>
+                <tr>
+                    <th colspan="2" style="color:#2bbc8a">STATISTIQUES DU TEXTE</th>
+                </tr>
+                <tr>
+                    <td>Caractères</td>
+                    <td class="caracteres"></td>
+                </tr>
+                <tr>
+                    <td>Voyelles</td>
+                    <td class="voyelles"></td>
+                </tr>
+                <tr>
+                    <td>Digrammes</td>
+                    <td class="digrammes"></td>
+                </tr>
+                <tr>
+                    <td>Trigrammes</td>
+                    <td class="trigrammes"></td>
+                </tr>
+                <tr>
+                    <td>Syllabes graphiques</td>
+                    <td class="syllabes"></td>
+                </tr>
+                <tr>
+                    <td>Mots</td>
+                    <td class="mots"></td>
+                </tr>
+                <tr>
+                    <td>Mots >6 caractères</td>
+                    <td class="motslongs"></td>
+                </tr>
+                <tr>
+                    <td>Mots >2 syllabes</td>
+                    <td class="motspolysyllabiques"></td>
+                </tr>
+                <tr>
+                    <td>Phrases</td>
+                    <td class="phrases"></td>
+                </tr>
+                </table>
+            </div>
+            <div class="column">
+                <table>
+                <tr>
+                    <th style="color:#2bbc8a" colspan="2">SCORES DE LISIBILITE</th>
+                </tr>
+                <tr>
+                    <td>LIX</td>
+                    <td class="lixscore"></td>
+                </tr>
+                <tr>
+                    <td>RIX</td>
+                    <td class="rixscore"></td>
+                </tr>
+                <tr>
+                    <td>Flesch-Kincaid</td>
+                    <td class="fkglscore"></td>
+                </tr>
+                <tr>
+                    <td>Gunning Fog</td>
+                    <td class="gunningscore"></td>
+                </tr>
+                <tr>
+                    <td>SMOG</td>
+                    <td class="smogscore"></td>
+                </tr>
+                <tr>
+                    <td>Coleman-Liau</td>
+                    <td class="coleman_liauscore"></td>
+                </tr>
+                <tr>
+                    <td>ARI</td>
+                    <td class="ariscore"></td>
+                </tr>
+                </table>
+            </div>
+        </div>
         <br>
-        
-        <p class="scores" style="color:#2bbc8a; font-size:20px"></p>
-        <p class="lixscore"></p>
-        <p class="rixscore"></p>
-        <p class="fkglscore"></p>
-        <p class="gunningscore"></p>
-        <p class="smogscore"></p>
-        <p class="coleman_liauscore"></p>
-        <p class="ariscore"></p>
-    </div>
-    <br>
-    <p style="color:#2bbc8a;text-align: center;">
-        Voir le projet sur <a href="https://github.com/filkat34/readability-scores" target="_blank">GitHub</a>
-    </p>
+        <p style="color:#2bbc8a;text-align: center;">
+            Voir le projet sur <a href="https://github.com/filkat34/readability-scores" target="_blank">GitHub</a>
+        </p>
     </body>
     <Script>
 
@@ -270,7 +358,6 @@
     // Events functions
 
     function scoreTextFile() {
-        const stats = document.querySelector(".stats") ;
         const caracteres = document.querySelector(".caracteres") ;
         const voyelles = document.querySelector(".voyelles") ;
         const digrammes = document.querySelector(".digrammes");
@@ -281,7 +368,6 @@
         const motspolysyllabiques = document.querySelector(".motspolysyllabiques");
         const phrases = document.querySelector(".phrases");
 
-        const scores = document.querySelector(".scores") ;
         const lix = document.querySelector(".lixscore");
         const rix = document.querySelector(".rixscore");
         const fkgl = document.querySelector(".fkglscore");
@@ -296,25 +382,23 @@
         reader.addEventListener(
             "load",
             () => {
-            stats.innerText='Analyse du texte';
-            caracteres.innerText ='Caractères ................................. ' + nbCaracteres(reader.result);
-            voyelles.innerText='Voyelles ................................... ' + nbVoyelles(reader.result);
-            digrammes.innerText='Digrammes .................................. ' + nbDigrammes(reader.result);
-            trigrammes.innerText='Trigrammes ................................. ' + nbTrigrammes(reader.result);
-            syllabes.innerText='Syllabes graphiques ........................ ' + nbSyllabesGraphiques(reader.result);
-            mots.innerText='Mots ....................................... ' + nbMots(reader.result);
-            motslongs.innerText='Mots longs (>6 caractères) ................. ' + nbMotsLongs(reader.result);
-            motspolysyllabiques.innerText='Mots polysyllabiques (>2 syllabes) ......... ' + nbMotsPolysyllabiques(reader.result);
-            phrases.innerText='Phrases .................................... ' + nbPhrases(reader.result);
+            caracteres.innerText =nbCaracteres(reader.result);
+            voyelles.innerText=nbVoyelles(reader.result);
+            digrammes.innerText=nbDigrammes(reader.result);
+            trigrammes.innerText=nbTrigrammes(reader.result);
+            syllabes.innerText=nbSyllabesGraphiques(reader.result);
+            mots.innerText=nbMots(reader.result);
+            motslongs.innerText=nbMotsLongs(reader.result);
+            motspolysyllabiques.innerText=nbMotsPolysyllabiques(reader.result);
+            phrases.innerText=nbPhrases(reader.result);
             
-            scores.innerText='Scores de lisibilité';
-            lix.innerText = 'LIX ........................................ ' + scoreLix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(reader.result));
-            rix.innerText ='RIX ........................................ ' + scoreRix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(reader.result));
-            fkgl.innerText='Flesch-Kincaid grade level ................. ' + scoreFkgl(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
-            gunningFog.innerText='Gunning Fog index .......................... ' + scoreGunningFog(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
-            smog.innerText='Simple Measure of Gobbledygook index ....... ' + scoreSMOG(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(reader.result));
-            colemanliau.innerText='Coleman-Liau index ......................... ' + scoreColemanLiau(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
-            ari.innerText='Automated Readability Index ................ ' + scoreAri(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(reader.result));
+            lix.innerText = scoreLix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(reader.result));
+            rix.innerText = scoreRix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(reader.result));
+            fkgl.innerText= scoreFkgl(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
+            gunningFog.innerText= scoreGunningFog(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
+            smog.innerText= scoreSMOG(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(reader.result));
+            colemanliau.innerText= scoreColemanLiau(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
+            ari.innerText= scoreAri(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(reader.result));
             },
             false,
         );
@@ -325,7 +409,6 @@
     }
     
     function scoreTextArea(){
-        const stats = document.querySelector(".stats") ;
         const caracteres = document.querySelector(".caracteres") ;
         const voyelles = document.querySelector(".voyelles") ;
         const digrammes = document.querySelector(".digrammes");
@@ -336,7 +419,6 @@
         const motspolysyllabiques = document.querySelector(".motspolysyllabiques");
         const phrases = document.querySelector(".phrases");
 
-        const scores = document.querySelector(".scores") ;
         const lix = document.querySelector(".lixscore");
         const rix = document.querySelector(".rixscore");
         const fkgl = document.querySelector(".fkglscore");
@@ -345,26 +427,24 @@
         const colemanliau = document.querySelector(".coleman_liauscore");
         const ari = document.querySelector(".ariscore");
         const inputText = document.getElementById("content").value;
-
-        stats.innerText='Analyse du texte';
-        caracteres.innerText ='Caractères ................................. ' + nbCaracteres(inputText);
-        voyelles.innerText='Voyelles ................................... ' + nbVoyelles(inputText);
-        digrammes.innerText='Digrammes .................................. ' + nbDigrammes(inputText);
-        trigrammes.innerText='Trigrammes ................................. ' + nbTrigrammes(inputText);
-        syllabes.innerText='Syllabes graphiques ........................ ' + nbSyllabesGraphiques(inputText);
-        mots.innerText='Mots ....................................... ' + nbMots(inputText);
-        motslongs.innerText='Mots longs (>6 caractères) ................. ' + nbMotsLongs(inputText);
-        motspolysyllabiques.innerText='Mots polysyllabiques (>2 syllabes) ......... ' + nbMotsPolysyllabiques(inputText);
-        phrases.innerText='Phrases .................................... ' + nbPhrases(inputText);
+    
+        caracteres.innerText = nbCaracteres(inputText);
+        voyelles.innerText= nbVoyelles(inputText);
+        digrammes.innerText= nbDigrammes(inputText);
+        trigrammes.innerText= nbTrigrammes(inputText);
+        syllabes.innerText= nbSyllabesGraphiques(inputText);
+        mots.innerText= nbMots(inputText);
+        motslongs.innerText= nbMotsLongs(inputText);
+        motspolysyllabiques.innerText= nbMotsPolysyllabiques(inputText);
+        phrases.innerText= nbPhrases(inputText);
         
-        scores.innerText='Scores de lisibilité';
-        lix.innerText = 'LIX ........................................ ' + scoreLix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(inputText));
-        rix.innerText ='RIX ........................................ ' + scoreRix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(inputText));
-        fkgl.innerText='Flesch-Kincaid grade level ................. ' + scoreFkgl(inputText).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(inputText));
-        gunningFog.innerText='Gunning Fog index .......................... ' + scoreGunningFog(inputText).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(inputText));
-        smog.innerText='Simple Measure of Gobbledygook index ....... ' + scoreSMOG(inputText).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(inputText));
-        colemanliau.innerText='Coleman-Liau index ......................... ' + scoreColemanLiau(inputText).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
-        ari.innerText='Automated Readability Index ................ ' + scoreAri(inputText).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(inputText));
+        lix.innerText = scoreLix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(inputText));
+        rix.innerText = scoreRix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(inputText));
+        fkgl.innerText= scoreFkgl(inputText).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(inputText));
+        gunningFog.innerText= scoreGunningFog(inputText).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(inputText));
+        smog.innerText= scoreSMOG(inputText).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(inputText));
+        colemanliau.innerText= scoreColemanLiau(inputText).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
+        ari.innerText= scoreAri(inputText).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(inputText));
     }
     </Script>
 </html>
