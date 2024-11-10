@@ -61,17 +61,16 @@
         <p>
             En se fondant sur cette analyse du texte, le programme permet ensuite le calcul et l'inteprétation de six indices de lisibilité : 
             LIX, RIX, Automated Readability Index (ARI), Gunning Fog index, Coleman-Liau index, Flesch-Kincaid Grade Level (FKGL),
-            Simple Measure of Gobbledygook index (SMOG). La majorité de ces indices de lisibilité ont été créés pour des textes anglais.
-            Pour les textes français, les indices RIX et LIX sont parmi les plus fiables.
+            Simple Measure of Gobbledygook index (SMOG).
         </p>
         <br>
 
-        <p style="align-items: center;text-align: center;"> Copiez-collez votre texte ici :<br><br>
-            <textarea name="textarea" id="content" cols="80" rows="10" placeholder="Copiez votre texte ici..."></textarea><br>
+        <p style="align-items: center;text-align: center;color:#2bbc8a"> Copiez-collez votre texte ici :<br><br>
+            <textarea name="textarea" id="content" cols="80" rows="10" placeholder="Collez votre texte ici..."></textarea><br>
             <input type="button" id="submitbutton" onclick="scoreTextArea()" value="Analyser le texte"></input> 
         </p>
         <br>
-        <p style="align-items: center;text-align: center;">Ou ajoutez un fichier en texte brut (.txt) en cliquant ci-dessous.<br><br>
+        <p style="align-items: center;text-align: center;color:#2bbc8a">Ou ajoutez un fichier en texte brut (.txt) en cliquant ci-dessous.<br><br>
             <input type="file" accept=".txt" onchange="scoreTextFile()"/><br />
         </p>
 
@@ -298,24 +297,24 @@
             "load",
             () => {
             stats.innerText='Analyse du texte';
-            caracteres.innerText ='Caractères.................................. ' + nbCaracteres(reader.result);
-            voyelles.innerText='Voyelles.................................... ' + nbVoyelles(reader.result);
-            digrammes.innerText='Digrammes................................... ' + nbDigrammes(reader.result);
-            trigrammes.innerText='Trigrammes.................................. ' + nbTrigrammes(reader.result);
-            syllabes.innerText='Syllabes.................................... ' + nbSyllabesGraphiques(reader.result);
-            mots.innerText='Mots........................................ ' + nbMots(reader.result);
-            motslongs.innerText='Mots longs (>6 caractères).................. ' + nbMotsLongs(reader.result);
-            motspolysyllabiques.innerText='Mots polysyllabiques (>2 syllabes).......... ' + nbMotsPolysyllabiques(reader.result);
-            phrases.innerText='Phrases..................................... ' + nbPhrases(reader.result);
+            caracteres.innerText ='Caractères ................................. ' + nbCaracteres(reader.result);
+            voyelles.innerText='Voyelles ................................... ' + nbVoyelles(reader.result);
+            digrammes.innerText='Digrammes .................................. ' + nbDigrammes(reader.result);
+            trigrammes.innerText='Trigrammes ................................. ' + nbTrigrammes(reader.result);
+            syllabes.innerText='Syllabes graphiques ........................ ' + nbSyllabesGraphiques(reader.result);
+            mots.innerText='Mots ....................................... ' + nbMots(reader.result);
+            motslongs.innerText='Mots longs (>6 caractères) ................. ' + nbMotsLongs(reader.result);
+            motspolysyllabiques.innerText='Mots polysyllabiques (>2 syllabes) ......... ' + nbMotsPolysyllabiques(reader.result);
+            phrases.innerText='Phrases .................................... ' + nbPhrases(reader.result);
             
             scores.innerText='Scores de lisibilité';
-            lix.innerText = 'LIX......................................... ' + scoreLix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(reader.result));
-            rix.innerText ='RIX......................................... ' + scoreRix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(reader.result));
-            fkgl.innerText='Flesch-Kincaid grade level.................. ' + scoreFkgl(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
-            gunningFog.innerText='Gunning Fog index........................... ' + scoreGunningFog(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
-            smog.innerText='Simple Measure of Gobbledygook index........ ' + scoreSMOG(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(reader.result));
-            colemanliau.innerText='Coleman-Liau index.......................... ' + scoreColemanLiau(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
-            ari.innerText='Automated Readability Index................. ' + scoreAri(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(reader.result));
+            lix.innerText = 'LIX ........................................ ' + scoreLix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(reader.result));
+            rix.innerText ='RIX ........................................ ' + scoreRix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(reader.result));
+            fkgl.innerText='Flesch-Kincaid grade level ................. ' + scoreFkgl(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
+            gunningFog.innerText='Gunning Fog index .......................... ' + scoreGunningFog(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
+            smog.innerText='Simple Measure of Gobbledygook index ....... ' + scoreSMOG(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(reader.result));
+            colemanliau.innerText='Coleman-Liau index ......................... ' + scoreColemanLiau(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
+            ari.innerText='Automated Readability Index ................ ' + scoreAri(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(reader.result));
             },
             false,
         );
@@ -348,24 +347,24 @@
         const inputText = document.getElementById("content").value;
 
         stats.innerText='Analyse du texte';
-        caracteres.innerText ='Caractères.................................. ' + nbCaracteres(inputText);
-        voyelles.innerText='Voyelles.................................... ' + nbVoyelles(inputText);
-        digrammes.innerText='Digrammes................................... ' + nbDigrammes(inputText);
-        trigrammes.innerText='Trigrammes.................................. ' + nbTrigrammes(inputText);
-        syllabes.innerText='Syllabes.................................... ' + nbSyllabesGraphiques(inputText);
-        mots.innerText='Mots........................................ ' + nbMots(inputText);
-        motslongs.innerText='Mots longs (>6 caractères).................. ' + nbMotsLongs(inputText);
-        motspolysyllabiques.innerText='Mots polysyllabiques (>2 syllabes).......... ' + nbMotsPolysyllabiques(inputText);
-        phrases.innerText='Phrases..................................... ' + nbPhrases(inputText);
+        caracteres.innerText ='Caractères ................................. ' + nbCaracteres(inputText);
+        voyelles.innerText='Voyelles ................................... ' + nbVoyelles(inputText);
+        digrammes.innerText='Digrammes .................................. ' + nbDigrammes(inputText);
+        trigrammes.innerText='Trigrammes ................................. ' + nbTrigrammes(inputText);
+        syllabes.innerText='Syllabes graphiques ........................ ' + nbSyllabesGraphiques(inputText);
+        mots.innerText='Mots ....................................... ' + nbMots(inputText);
+        motslongs.innerText='Mots longs (>6 caractères) ................. ' + nbMotsLongs(inputText);
+        motspolysyllabiques.innerText='Mots polysyllabiques (>2 syllabes) ......... ' + nbMotsPolysyllabiques(inputText);
+        phrases.innerText='Phrases .................................... ' + nbPhrases(inputText);
         
         scores.innerText='Scores de lisibilité';
-        lix.innerText = 'LIX......................................... ' + scoreLix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(inputText));
-        rix.innerText ='RIX......................................... ' + scoreRix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(inputText));
-        fkgl.innerText='Flesch-Kincaid grade level.................. ' + scoreFkgl(inputText).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(inputText));
-        gunningFog.innerText='Gunning Fog index........................... ' + scoreGunningFog(inputText).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(inputText));
-        smog.innerText='Simple Measure of Gobbledygook index........ ' + scoreSMOG(inputText).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(inputText));
-        colemanliau.innerText='Coleman-Liau index.......................... ' + scoreColemanLiau(inputText).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
-        ari.innerText='Automated Readability Index................. ' + scoreAri(inputText).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(inputText));
+        lix.innerText = 'LIX ........................................ ' + scoreLix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(inputText));
+        rix.innerText ='RIX ........................................ ' + scoreRix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(inputText));
+        fkgl.innerText='Flesch-Kincaid grade level ................. ' + scoreFkgl(inputText).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(inputText));
+        gunningFog.innerText='Gunning Fog index .......................... ' + scoreGunningFog(inputText).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(inputText));
+        smog.innerText='Simple Measure of Gobbledygook index ....... ' + scoreSMOG(inputText).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(inputText));
+        colemanliau.innerText='Coleman-Liau index ......................... ' + scoreColemanLiau(inputText).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
+        ari.innerText='Automated Readability Index ................ ' + scoreAri(inputText).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(inputText));
     }
     </Script>
 </html>
