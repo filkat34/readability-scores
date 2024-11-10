@@ -85,11 +85,12 @@ h6 {
         </p>
         <br>
 
-        <p style="color:#2bbc8a;text-align: center;">
-            Voir le projet sur <a href="https://github.com/filkat34/readability-scores" target="_blank">GitHub</a>
+        <p style="align-items: center;text-align: center;"> Copiez-collez votre texte ici :<br><br>
+            <textarea name="postContent" id="content" cols="80" rows="10"></textarea><br>
+            <button id="btnClick" onclick="addVal()">Analyser texte</button> 
         </p>
         <br>
-        <p style="align-items: center;text-align: center;">Ajoutez un fichier en texte brut (.txt) pour calculer ses scores de lisibilité.<br><br>
+        <p style="align-items: center;text-align: center;">Ou ajoutez un fichier en texte brut (.txt) en cliquant ci-dessous.<br><br>
             <input type="file" accept=".txt" onchange="scoreText()"/><br />
         </p>
         
@@ -116,6 +117,10 @@ h6 {
         <p class="coleman_liauscore"></p>
         <p class="ariscore"></p>
     </div>
+    <br>
+    <p style="color:#2bbc8a;text-align: center;">
+        Voir le projet sur <a href="https://github.com/filkat34/readability-scores" target="_blank">GitHub</a>
+    </p>
     </body>
     <Script>
         function scoreText() {
