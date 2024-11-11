@@ -341,7 +341,7 @@
     }
 
     function scoreGunningFog(str){
-        return 0.4*((nbMots(str)/nbPhrases(str))+100*(nbMotsPolysyllabiques(str)/nbMots(str)));
+        return 0.4*(nbMots(str)/nbPhrases(str)+100*(nbMotsPolysyllabiques(str)/nbMots(str)));
     }
 
     function scoreSMOG(str){
@@ -371,18 +371,18 @@
                 for (let row in formula_scales) {
                 if (formula_scales[column][row] == formula){
                     if (score > formula_scales[column][1]){
-                        return "Très difficile";
+                        return "🔴 Très difficile";
                     }
                     if (score > formula_scales[column][2]){
-                        return "Difficile";
+                        return "🟠 Difficile";
                     }
                     if (score > formula_scales[column][3]){
-                        return "Intermédiaire";
+                        return "🟡 Intermédiaire";
                     }
                     if (score > formula_scales[column][4]){
-                        return "Facile";
+                        return "🟢 Facile";
                     }
-                    return "Très facile";
+                    return "⚪️ Très facile";
                         }
                         }
                     }
