@@ -18,7 +18,7 @@ Ce programme permet aussi l'affichage des statistiques du texte sur lesquelles i
 * voyelles
 * digrammes
 * trigrammes
-* syllabes
+* syllabes graphiques
 * mots
 * mots de plus de six caractères
 * mots de plus de trois syllabes
