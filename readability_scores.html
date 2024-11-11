@@ -67,10 +67,28 @@
                 }
                 
                 table{
+                    border-collapse: collapse;
                     width: 100%;
+                    padding-left: 10px;
+                    padding-right: 10px;
                 }
-                td, th {
-                    width:25%;
+                th{
+                    text-align: center;
+                    color: #1d1f21;
+                    background-color: #2bbc8a;
+                    padding-top: 10px;
+                    border: solid;
+                    border-color: #cdcdcd;
+                    border-width: thin;
+                }
+
+                td{
+                    text-align: center;
+                    padding-bottom: 10px;
+                    padding-top: 10px;
+                    border: solid;
+                    border-color: #cdcdcd;
+                    border-width: thin;
                 }
                          
 
@@ -93,99 +111,114 @@
             Simple Measure of Gobbledygook index (SMOG).
         </p>
         <br>
-
-        <p style="align-items: center;text-align: center;color:#2bbc8a"> Copiez-collez votre texte ici :<br><br>
-            <textarea name="textarea" id="content" cols="80" rows="10" placeholder="Collez votre texte ici..."></textarea><br>
-            <input type="button" id="submitbutton" onclick="scoreTextArea()" value="Analyser le texte"></input> 
-        </p>
-        <br>
-        <p style="align-items: center;text-align: center;color:#2bbc8a">Ou ajoutez un fichier en texte brut (.txt) en cliquant ci-dessous.<br><br>
+        <div class="row">
+            <div class="column">
+                <p style="align-items: center;text-align: center">
+                    <textarea name="textarea" id="content" cols="40" rows="10" placeholder="Copiez-collez votre texte à analyser ici..."></textarea><br>
+                    <input type="button" id="submitbutton" onclick="scoreTextArea()" value="Analyser"></input> 
+                </p>
+            </div>
+            <div class="column">
+                <p style="align-items: center;text-align: center">...ou ajoutez un fichier en texte brut (.txt).<br><br>
             <input type="file" accept=".txt" onchange="scoreTextFile()"/><br />
-        </p>
-
+                </p>
+            </div>
+        </div>
+        <br>
        <div class="row">
             <div class="column">
                 <table>
                 <tr>
-                    <th colspan="2" style="color:#2bbc8a">STATISTIQUES DU TEXTE</th>
+                    <th>Élément</th>
+                    <th>Nombre</th>
                 </tr>
                 <tr>
                     <td>Caractères</td>
-                    <td class="caracteres"></td>
+                    <td class="caracteres">0</td>
                 </tr>
                 <tr>
                     <td>Voyelles</td>
-                    <td class="voyelles"></td>
+                    <td class="voyelles">0</td>
                 </tr>
                 <tr>
                     <td>Digrammes</td>
-                    <td class="digrammes"></td>
+                    <td class="digrammes">0</td>
                 </tr>
                 <tr>
                     <td>Trigrammes</td>
-                    <td class="trigrammes"></td>
+                    <td class="trigrammes">0</td>
                 </tr>
                 <tr>
                     <td>Syllabes graphiques</td>
-                    <td class="syllabes"></td>
+                    <td class="syllabes">0</td>
                 </tr>
                 <tr>
                     <td>Mots</td>
-                    <td class="mots"></td>
+                    <td class="mots">0</td>
                 </tr>
                 <tr>
                     <td>Mots >6 caractères</td>
-                    <td class="motslongs"></td>
+                    <td class="motslongs">0</td>
                 </tr>
                 <tr>
                     <td>Mots >2 syllabes</td>
-                    <td class="motspolysyllabiques"></td>
+                    <td class="motspolysyllabiques">0</td>
                 </tr>
                 <tr>
                     <td>Phrases</td>
-                    <td class="phrases"></td>
+                    <td class="phrases">0</td>
                 </tr>
                 </table>
             </div>
             <div class="column">
                 <table>
                 <tr>
-                    <th style="color:#2bbc8a" colspan="2">SCORES DE LISIBILITE</th>
+                    <th>Indices</th>
+                    <th>Scores</th>
+                    <th>Niveau de difficulté</th>
                 </tr>
                 <tr>
                     <td>LIX</td>
-                    <td class="lixscore"></td>
+                    <td class="lixscore">0</td>
+                    <td class="lixdiff">-</td>
                 </tr>
                 <tr>
                     <td>RIX</td>
-                    <td class="rixscore"></td>
+                    <td class="rixscore">0</td>
+                    <td class="rixdiff">-</td>
                 </tr>
                 <tr>
                     <td>Flesch-Kincaid</td>
-                    <td class="fkglscore"></td>
+                    <td class="fkglscore">0</td>
+                    <td class="fkglscorediff">-</td>
                 </tr>
                 <tr>
                     <td>Gunning Fog</td>
-                    <td class="gunningscore"></td>
+                    <td class="gunningscore">0</td>
+                    <td class="gunningscorediff">-</td>
                 </tr>
                 <tr>
                     <td>SMOG</td>
-                    <td class="smogscore"></td>
+                    <td class="smogscore">0</td>
+                    <td class="smogscorediff">-</td>
                 </tr>
                 <tr>
                     <td>Coleman-Liau</td>
-                    <td class="coleman_liauscore"></td>
+                    <td class="coleman_liauscore">0</td>
+                    <td class="coleman_liauscorediff">-</td>
                 </tr>
                 <tr>
                     <td>ARI</td>
-                    <td class="ariscore"></td>
+                    <td class="ariscore">0</td>
+                    <td class="ariscorediff">-</td>
                 </tr>
                 </table>
             </div>
         </div>
         <br>
-        <p style="color:#2bbc8a;text-align: center;">
-            Voir le projet sur <a href="https://github.com/filkat34/readability-scores" target="_blank">GitHub</a>
+        <p style="color:#2bbc8a;text-align: center;"> Voir le projet sur 
+            <a href="https://github.com/filkat34/readability-scores" target="_blank"> <img src="https://skillicons.dev/icons?i=github" alt="Github" 
+                width="32" height="32"/></a>
         </p>
     </body>
     <Script>
@@ -375,6 +408,14 @@
         const smog = document.querySelector(".smogscore");
         const colemanliau = document.querySelector(".coleman_liauscore");
         const ari = document.querySelector(".ariscore");
+
+        const lixdiff = document.querySelector(".lixdiff");
+        const rixdiff = document.querySelector(".rixdiff");
+        const fkgldiff = document.querySelector(".fkglscorediff");
+        const gunningFogdiff = document.querySelector(".gunningscorediff");
+        const smogdiff = document.querySelector(".smogscorediff");
+        const colemanliaudiff = document.querySelector(".coleman_liauscorediff");
+        const aridiff = document.querySelector(".ariscorediff");
         
         const [file] = document.querySelector("input[type=file]").files;
         const reader = new FileReader();
@@ -392,13 +433,21 @@
             motspolysyllabiques.innerText=nbMotsPolysyllabiques(reader.result);
             phrases.innerText=nbPhrases(reader.result);
             
-            lix.innerText = scoreLix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(reader.result));
-            rix.innerText = scoreRix(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(reader.result));
-            fkgl.innerText= scoreFkgl(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(reader.result));
-            gunningFog.innerText= scoreGunningFog(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(reader.result));
-            smog.innerText= scoreSMOG(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(reader.result));
-            colemanliau.innerText= scoreColemanLiau(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
-            ari.innerText= scoreAri(reader.result).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(reader.result));
+            lix.innerText = scoreLix(reader.result).toFixed(2);
+            rix.innerText = scoreRix(reader.result).toFixed(2);
+            fkgl.innerText= scoreFkgl(reader.result).toFixed(2);
+            gunningFog.innerText= scoreGunningFog(reader.result).toFixed(2);
+            smog.innerText= scoreSMOG(reader.result).toFixed(2);
+            colemanliau.innerText= scoreColemanLiau(reader.result).toFixed(2);
+            ari.innerText= scoreAri(reader.result).toFixed(2);
+
+            lixdiff.innerText = scoreAnalysis('lix', scoreLix(reader.result));
+            rixdiff.innerText = scoreAnalysis('rix', scoreRix(reader.result));
+            fkgldiff.innerText = scoreAnalysis('fkgl', scoreFkgl(reader.result));
+            gunningFogdiff.innerText = scoreAnalysis('gunning', scoreGunningFog(reader.result));
+            smogdiff.innerText = scoreAnalysis('smog', scoreSMOG(reader.result));
+            colemanliaudiff.innerText = scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
+            aridiff.innerText = scoreAnalysis('ari', scoreAri(reader.result));
             },
             false,
         );
@@ -427,6 +476,14 @@
         const colemanliau = document.querySelector(".coleman_liauscore");
         const ari = document.querySelector(".ariscore");
         const inputText = document.getElementById("content").value;
+
+        const lixdiff = document.querySelector(".lixdiff");
+        const rixdiff = document.querySelector(".rixdiff");
+        const fkgldiff = document.querySelector(".fkglscorediff");
+        const gunningFogdiff = document.querySelector(".gunningscorediff");
+        const smogdiff = document.querySelector(".smogscorediff");
+        const colemanliaudiff = document.querySelector(".coleman_liauscorediff");
+        const aridiff = document.querySelector(".ariscorediff");
     
         caracteres.innerText = nbCaracteres(inputText);
         voyelles.innerText= nbVoyelles(inputText);
@@ -438,13 +495,21 @@
         motspolysyllabiques.innerText= nbMotsPolysyllabiques(inputText);
         phrases.innerText= nbPhrases(inputText);
         
-        lix.innerText = scoreLix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('lix', scoreLix(inputText));
-        rix.innerText = scoreRix(inputText).toFixed(1)+' ==> '+ scoreAnalysis('rix', scoreRix(inputText));
-        fkgl.innerText= scoreFkgl(inputText).toFixed(1)+' ==> '+ scoreAnalysis('fkgl', scoreFkgl(inputText));
-        gunningFog.innerText= scoreGunningFog(inputText).toFixed(1)+' ==> '+ scoreAnalysis('gunning', scoreGunningFog(inputText));
-        smog.innerText= scoreSMOG(inputText).toFixed(1)+' ==> '+ scoreAnalysis('smog', scoreSMOG(inputText));
-        colemanliau.innerText= scoreColemanLiau(inputText).toFixed(1)+' ==> '+ scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
-        ari.innerText= scoreAri(inputText).toFixed(1)+' ==> '+ scoreAnalysis('ari', scoreAri(inputText));
+        lix.innerText = scoreLix(inputText).toFixed(2);
+        rix.innerText = scoreRix(inputText).toFixed(2);
+        fkgl.innerText= scoreFkgl(inputText).toFixed(2);
+        gunningFog.innerText= scoreGunningFog(inputText).toFixed(2);
+        smog.innerText= scoreSMOG(inputText).toFixed(2);
+        colemanliau.innerText= scoreColemanLiau(inputText).toFixed(2);
+        ari.innerText= scoreAri(inputText).toFixed(2);
+
+        lixdiff.innerText = scoreAnalysis('lix', scoreLix(inputText));
+        rixdiff.innerText = scoreAnalysis('rix', scoreRix(inputText));
+        fkgldiff.innerText = scoreAnalysis('fkgl', scoreFkgl(inputText));
+        gunningFogdiff.innerText = scoreAnalysis('gunning', scoreGunningFog(inputText));
+        smogdiff.innerText = scoreAnalysis('smog', scoreSMOG(inputText));
+        colemanliaudiff.innerText = scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
+        aridiff.innerText = scoreAnalysis('ari', scoreAri(inputText));
     }
     </Script>
 </html>
