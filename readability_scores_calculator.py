@@ -87,11 +87,11 @@ def score_analysis(formula, score):
     '''Gives the reading levels corresponding to a score for each formula'''
     formula_scales = [['lix',59,50,40,30],
                         ['rix',7.1,5.3,2.9,1.8],
-                        ['fkgl',15,11,5,1],
-                        ['gunning',15,8,5,1],
-                        ['smog',15,8,5,1],
-                        ['ari',15,8,5,1],
-                        ['coleman_liau',15,8,5,1]]
+                        ['fkgl',15,12,5,1],
+                        ['gunning',17,13,7,1],
+                        ['smog',14,12,7,1],
+                        ['ari',15,9,5,1],
+                        ['coleman_liau',15,9,5,1]]
     for column in range(7):
         for row in range(5):
             if formula_scales[column][row] == formula :

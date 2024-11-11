@@ -44,6 +44,21 @@
                 color:#2bbc8a;
                 text-align: center;
                 }
+
+                h2 {
+                color:#2bbc8a;
+                text-align: center;
+                }
+
+                h3 {
+                color:#2bbc8a;
+                text-align: left;
+                }
+
+                li{
+                    padding-bottom: 20px;
+                }
+
                 * {
                 box-sizing: border-box;
                 }
@@ -110,7 +125,15 @@
             LIX, RIX, Automated Readability Index (ARI), Gunning Fog index, Coleman-Liau index, Flesch-Kincaid Grade Level (FKGL),
             Simple Measure of Gobbledygook index (SMOG).
         </p>
-        <br>
+        <p>
+            Ces indices ont pour la plupart été inventés pour mesurer la lisibilité de textes anglais, à l'exception de l'indice suédois LIX. Ce dernier
+            est sans doute le plus efficace pour donner une mesure juste de la difficulté d'un texte français.
+        </p>
+
+        <p>Dans tous les cas, un texte sera considéré comme étant aisément lisible par un lecteur moyen s'il relève d'un niveau de difficulté "🟡 Intermédiaire" (cela correspond
+            au niveau d'un élève de 3<sup>e</sup>) ou inférieur ("🟢 Facile", "⚪️ Très facile").
+        </p>
+            <br>
         <div class="row">
             <div class="column">
                 <p style="align-items: center;text-align: center">
@@ -216,6 +239,18 @@
             </div>
         </div>
         <br>
+        <h3>Bibliographie indicative</h3>
+        <ul>
+            <li>Benoît J.-P. (1986). "<a href="https://doi.org/10.3406/prati.1986.1409">Revue critique des formules de lisibilité (60 ans de formules de lisibilité : qu'en reste-t-il ?)</a>".</li>
+            <li>Conquet A., Richaudeau F. (1973). "<a href="https://doi.org/10.3406/colan.1973.3978">Cinq méthodes de mesure de la lisibilité</a>".</li>
+            <li>De Landsheere, G. (1963). "<a href="http://www.jstor.org/stable/40659295">Pour une application des tests de lisibilité de Flesch à la langue française</a>"</li>
+            <li>Henry G. (1980). "<a href ="https://doi.org/10.3406/colan.1980.1364">Lisibilité et compréhension</a>".</li>
+            <li>Labasse B. (1999). "<a href="https://doi.org/10.3406/colan.1999.2951">La lisibilité rédactionnelle : fondements et perspectives</a>".</li>
+            <li>Le Maux, J. (2015). "<a href = "https://doi.org/10.3917/rfla.202.0099">La lisibilité de l’information financière</a>".</li>
+            <li>Mesnager J. (1989). "<a href="https://doi.org/10.3406/colan.1989.1081"> Lisibilité des textes pour enfants : un nouvel outil ?</a></li>
+            <li>Richaudeau F. (1976). "<a href="https://doi.org/10.3406/colan.1976.4293">Faut-il brûler les formules de lisibilité ?</a>".</li>
+        </ul>
+
         <p style="color:#2bbc8a;text-align: center;"> Voir le projet sur 
             <a href="https://github.com/filkat34/readability-scores" target="_blank"> <img src="https://skillicons.dev/icons?i=github" alt="Github" 
                 width="32" height="32"/></a>
@@ -361,11 +396,11 @@
     function scoreAnalysis(formula, score){
             let formula_scales = [['lix',59,50,40,30],
                             ['rix',7.1,5.3,2.9,1.8],
-                            ['fkgl',15,11,5,1],
-                            ['gunning',15,8,5,1],
-                            ['smog',15,8,5,1],
-                            ['ari',15,8,5,1],
-                            ['coleman_liau',15,8,5,1]
+                            ['fkgl',15,12,5,1],
+                            ['gunning',17,13,7,1],
+                            ['smog',14,12,7,1],
+                            ['ari',15,9,5,1],
+                            ['coleman_liau',15,9,5,1]
                             ]
             for (let column in formula_scales) {
                 for (let row in formula_scales) {
