@@ -89,7 +89,7 @@ return motsLongs;
 }
 
 function nbPhrases(str){
-let regex = /(\w\w+\s?[.?!])/gi;
+let regex = /\w\w+\.|!|\?/gi;
 let phrases = str.match(regex);
 if(phrases==null){
     phrases = 1;
