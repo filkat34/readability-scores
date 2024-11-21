@@ -105,8 +105,6 @@
                     border-color: #cdcdcd;
                     border-width: thin;
                 }
-                         
-
         </style>
     </head>
     <body>
@@ -255,6 +253,7 @@
             <a href="https://github.com/filkat34/readability-scores" target="_blank"> <img src="https://skillicons.dev/icons?i=github" alt="Github" 
                 width="32" height="32"/></a>
         </p>
+        </div>
     </body>
     <Script>
 
@@ -335,7 +334,7 @@
         return motsPolysyllabiques
     }
 
-    function nbMotsLongs(str) { 
+    function nbMotsLongs(str) {
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
         let regex = /(\w{7,})/g;
         let motsLongs = str.match(regex);
@@ -422,7 +421,7 @@
                         }
                     }
         }
-    
+
     // Events functions
 
     function scoreTextFile() {
@@ -451,7 +450,7 @@
         const smogdiff = document.querySelector(".smogscorediff");
         const colemanliaudiff = document.querySelector(".coleman_liauscorediff");
         const aridiff = document.querySelector(".ariscorediff");
-        
+
         const [file] = document.querySelector("input[type=file]").files;
         const reader = new FileReader();
 
@@ -467,7 +466,7 @@
             motslongs.innerText=nbMotsLongs(reader.result);
             motspolysyllabiques.innerText=nbMotsPolysyllabiques(reader.result);
             phrases.innerText=nbPhrases(reader.result);
-            
+
             lix.innerText = scoreLix(reader.result).toFixed(2);
             rix.innerText = scoreRix(reader.result).toFixed(2);
             fkgl.innerText= scoreFkgl(reader.result).toFixed(2);
@@ -491,7 +490,7 @@
             reader.readAsText(file);
         }
     }
-    
+
     function scoreTextArea(){
         const caracteres = document.querySelector(".caracteres") ;
         const voyelles = document.querySelector(".voyelles") ;
@@ -519,7 +518,7 @@
         const smogdiff = document.querySelector(".smogscorediff");
         const colemanliaudiff = document.querySelector(".coleman_liauscorediff");
         const aridiff = document.querySelector(".ariscorediff");
-    
+
         caracteres.innerText = nbCaracteres(inputText);
         voyelles.innerText= nbVoyelles(inputText);
         digrammes.innerText= nbDigrammes(inputText);
@@ -529,7 +528,7 @@
         motslongs.innerText= nbMotsLongs(inputText);
         motspolysyllabiques.innerText= nbMotsPolysyllabiques(inputText);
         phrases.innerText= nbPhrases(inputText);
-        
+
         lix.innerText = scoreLix(inputText).toFixed(2);
         rix.innerText = scoreRix(inputText).toFixed(2);
         fkgl.innerText= scoreFkgl(inputText).toFixed(2);
