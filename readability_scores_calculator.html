@@ -1,278 +1,296 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Calculateur d'indices de lisibilité</title>
-        <style>
-            body
-                {
-                margin: 0;
-                padding: 0;
-                height: auto;
-                width: auto;
-                background: #1d1f21;
-                color: #cdcdcd;
-                font-family: monospace;
-                overflow-x: hidden;
-                }
 
-                .main {
-                margin-left: 15%;
-                margin-right: 15%;
-                margin-top: 65px;
-                margin-bottom: 0px;
-                font-size: 15px;
-                font-family: "Menlo", "Meslo LG", monospace;
-                font-weight: 400;
-                line-height: 1.725;
-                text-rendering: geometricPrecision;
-                text-align:auto;
-                color: #c9cacc;
-                }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Calculateur d'indices de lisibilité</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            width: auto;
+            background: #1d1f21;
+            color: #cdcdcd;
+            font-family: monospace;
+            overflow-x: hidden;
+        }
 
-                .icon {
-                width: 30px;
-                }
+        .main {
+            margin-left: 15%;
+            margin-right: 15%;
+            margin-top: 65px;
+            margin-bottom: 0px;
+            font-size: 15px;
+            font-family: "Menlo", "Meslo LG", monospace;
+            font-weight: 400;
+            line-height: 1.725;
+            text-rendering: geometricPrecision;
+            text-align: auto;
+            color: #c9cacc;
+        }
 
-                a {
-                text-decoration: underline;
-                color: #c9cacc;
-                }
+        .icon {
+            width: 30px;
+        }
 
-                h1 {
-                color:#2bbc8a;
-                text-align: center;
-                }
+        a {
+            text-decoration: underline;
+            color: #c9cacc;
+        }
 
-                h2 {
-                color:#2bbc8a;
-                text-align: center;
-                }
+        h1 {
+            color: #2bbc8a;
+            text-align: center;
+        }
 
-                h3 {
-                color:#2bbc8a;
-                text-align: left;
-                }
+        h2 {
+            color: #2bbc8a;
+            text-align: center;
+        }
 
-                li{
-                    padding-bottom: 20px;
-                }
+        h3 {
+            color: #2bbc8a;
+            text-align: left;
+        }
 
-                * {
-                box-sizing: border-box;
-                }
+        li {
+            padding-bottom: 20px;
+        }
 
-                .column {
-                    float: left;
-                    width: 50%;
-                    padding: 10px;
-                }
+        * {
+            box-sizing: border-box;
+        }
 
-                .row:after {
-                content: "";
-                display: table;
-                clear: both;
-                }
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
 
-                @media screen and (max-width: 600px) {
-                .column {
-                    width: 100%;
-                }
-                }
-                
-                table{
-                    border-collapse: collapse;
-                    width: 100%;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                }
-                th{
-                    text-align: center;
-                    color: #1d1f21;
-                    background-color: #2bbc8a;
-                    padding-top: 10px;
-                    border: solid;
-                    border-color: #cdcdcd;
-                    border-width: thin;
-                }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
-                td{
-                    text-align: center;
-                    padding-bottom: 10px;
-                    padding-top: 10px;
-                    border: solid;
-                    border-color: #cdcdcd;
-                    border-width: thin;
-                }
-        </style>
-    </head>
-    <body>
-        <div class="main">
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        th {
+            text-align: center;
+            color: #1d1f21;
+            background-color: #2bbc8a;
+            padding-top: 10px;
+            border: solid;
+            border-color: #cdcdcd;
+            border-width: thin;
+        }
+
+        td {
+            text-align: center;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border: solid;
+            border-color: #cdcdcd;
+            border-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
         <header>
             <h1>📚 Indices de lisibilité pour textes français 🇫🇷</h1>
         </header>
         <br>
         <p>
-            L'objectif de ce programme est d'abord de permettre, grâce à l'usage d'expressions régulières, l'analyse d'un texte brut fourni 
-            par l'utilisateur pour en extraire plusieurs variables : nombre de caractères, de voyelles, de digrammes, de trigrammes, 
-            de syllabes graphiques, de mots, de mots de plus de six caractères, de mots de plus de trois syllabes graphiques, de phrases.
+            L'objectif de ce programme est d'abord de permettre, grâce à l'usage d'expressions régulières, l'analyse
+            d'un texte brut fourni
+            par l'utilisateur pour en extraire plusieurs variables : nombre de caractères, de voyelles, de digrammes, de
+            trigrammes,
+            de syllabes graphiques, de mots, de mots de plus de six caractères, de mots de plus de trois syllabes
+            graphiques, de phrases.
         </p>
         <p>
-            En se fondant sur cette analyse du texte, le programme permet ensuite le calcul et l'inteprétation de six indices de lisibilité : 
-            LIX, RIX, Automated Readability Index (ARI), Gunning Fog index, Coleman-Liau index, Flesch-Kincaid Grade Level (FKGL),
+            En se fondant sur cette analyse du texte, le programme permet ensuite le calcul et l'inteprétation de six
+            indices de lisibilité :
+            LIX, RIX, Automated Readability Index (ARI), Gunning Fog index, Coleman-Liau index, Flesch-Kincaid Grade
+            Level (FKGL),
             Simple Measure of Gobbledygook index (SMOG).
         </p>
         <p>
-            Ces indices ont pour la plupart été inventés pour mesurer la lisibilité de textes anglais, à l'exception de l'indice suédois LIX. Ce dernier
+            Ces indices ont pour la plupart été inventés pour mesurer la lisibilité de textes anglais, à l'exception de
+            l'indice suédois LIX. Ce dernier
             est sans doute le plus efficace pour donner une mesure juste de la difficulté d'un texte français.
         </p>
 
-        <p>Dans tous les cas, un texte sera considéré comme étant aisément lisible par un lecteur moyen s'il relève d'un niveau de difficulté "🟡 Intermédiaire" (cela correspond
+        <p>Dans tous les cas, un texte sera considéré comme étant aisément lisible par un lecteur moyen s'il relève d'un
+            niveau de difficulté "🟡 Intermédiaire" (cela correspond
             au niveau d'un élève de 3<sup>e</sup>) ou inférieur ("🟢 Facile", "⚪️ Très facile").
         </p>
-            <br>
+        <br>
         <div class="row">
             <div class="column">
                 <p style="align-items: center;text-align: center">
-                    <textarea name="textarea" id="content" cols="40" rows="10" placeholder="Copiez-collez votre texte à analyser ici..."></textarea><br>
-                    <input type="button" id="submitbutton" onclick="scoreTextArea()" value="Analyser"></input> 
+                    <textarea name="textarea" id="content" cols="40" rows="10"
+                        placeholder="Copiez-collez votre texte à analyser ici..."></textarea><br>
+                    <input type="button" id="submitbutton" onclick="scoreTextArea()" value="Analyser"></input>
                 </p>
             </div>
             <div class="column">
                 <p style="align-items: center;text-align: center">...ou ajoutez un fichier en texte brut (.txt).<br><br>
-            <input type="file" accept=".txt" onchange="scoreTextFile()"/><br />
+                    <input type="file" accept=".txt" onchange="scoreTextFile()" /><br />
                 </p>
             </div>
         </div>
         <br>
-       <div class="row">
+        <div class="row">
             <div class="column">
                 <table>
-                <tr>
-                    <th>Élément</th>
-                    <th>Nombre</th>
-                </tr>
-                <tr>
-                    <td>Caractères</td>
-                    <td class="caracteres">0</td>
-                </tr>
-                <tr>
-                    <td>Voyelles</td>
-                    <td class="voyelles">0</td>
-                </tr>
-                <tr>
-                    <td>Digrammes</td>
-                    <td class="digrammes">0</td>
-                </tr>
-                <tr>
-                    <td>Trigrammes</td>
-                    <td class="trigrammes">0</td>
-                </tr>
-                <tr>
-                    <td>Syllabes graphiques</td>
-                    <td class="syllabes">0</td>
-                </tr>
-                <tr>
-                    <td>Mots</td>
-                    <td class="mots">0</td>
-                </tr>
-                <tr>
-                    <td>Mots >6 caractères</td>
-                    <td class="motslongs">0</td>
-                </tr>
-                <tr>
-                    <td>Mots >2 syllabes graphiques</td>
-                    <td class="motspolysyllabiques">0</td>
-                </tr>
-                <tr>
-                    <td>Phrases</td>
-                    <td class="phrases">0</td>
-                </tr>
+                    <tr>
+                        <th>Élément</th>
+                        <th>Nombre</th>
+                    </tr>
+                    <tr>
+                        <td>Caractères</td>
+                        <td class="caracteres">0</td>
+                    </tr>
+                    <tr>
+                        <td>Voyelles</td>
+                        <td class="voyelles">0</td>
+                    </tr>
+                    <tr>
+                        <td>Digrammes</td>
+                        <td class="digrammes">0</td>
+                    </tr>
+                    <tr>
+                        <td>Trigrammes</td>
+                        <td class="trigrammes">0</td>
+                    </tr>
+                    <tr>
+                        <td>Syllabes graphiques</td>
+                        <td class="syllabes">0</td>
+                    </tr>
+                    <tr>
+                        <td>Mots</td>
+                        <td class="mots">0</td>
+                    </tr>
+                    <tr>
+                        <td>Mots >6 caractères</td>
+                        <td class="motslongs">0</td>
+                    </tr>
+                    <tr>
+                        <td>Mots >2 syllabes graphiques</td>
+                        <td class="motspolysyllabiques">0</td>
+                    </tr>
+                    <tr>
+                        <td>Phrases</td>
+                        <td class="phrases">0</td>
+                    </tr>
                 </table>
             </div>
             <div class="column">
                 <table>
-                <tr>
-                    <th>Indices</th>
-                    <th>Scores</th>
-                    <th>Niveau de difficulté</th>
-                </tr>
-                <tr>
-                    <td>LIX</td>
-                    <td class="lixscore">0</td>
-                    <td class="lixdiff">-</td>
-                </tr>
-                <tr>
-                    <td>RIX</td>
-                    <td class="rixscore">0</td>
-                    <td class="rixdiff">-</td>
-                </tr>
-                <tr>
-                    <td>Flesch-Kincaid</td>
-                    <td class="fkglscore">0</td>
-                    <td class="fkglscorediff">-</td>
-                </tr>
-                <tr>
-                    <td>Gunning Fog</td>
-                    <td class="gunningscore">0</td>
-                    <td class="gunningscorediff">-</td>
-                </tr>
-                <tr>
-                    <td>SMOG</td>
-                    <td class="smogscore">0</td>
-                    <td class="smogscorediff">-</td>
-                </tr>
-                <tr>
-                    <td>Coleman-Liau</td>
-                    <td class="coleman_liauscore">0</td>
-                    <td class="coleman_liauscorediff">-</td>
-                </tr>
-                <tr>
-                    <td>ARI</td>
-                    <td class="ariscore">0</td>
-                    <td class="ariscorediff">-</td>
-                </tr>
+                    <tr>
+                        <th>Indices</th>
+                        <th>Scores</th>
+                        <th>Niveau de difficulté</th>
+                    </tr>
+                    <tr>
+                        <td>LIX</td>
+                        <td class="lixscore">0</td>
+                        <td class="lixdiff">-</td>
+                    </tr>
+                    <tr>
+                        <td>RIX</td>
+                        <td class="rixscore">0</td>
+                        <td class="rixdiff">-</td>
+                    </tr>
+                    <tr>
+                        <td>Flesch-Kincaid</td>
+                        <td class="fkglscore">0</td>
+                        <td class="fkglscorediff">-</td>
+                    </tr>
+                    <tr>
+                        <td>Gunning Fog</td>
+                        <td class="gunningscore">0</td>
+                        <td class="gunningscorediff">-</td>
+                    </tr>
+                    <tr>
+                        <td>SMOG</td>
+                        <td class="smogscore">0</td>
+                        <td class="smogscorediff">-</td>
+                    </tr>
+                    <tr>
+                        <td>Coleman-Liau</td>
+                        <td class="coleman_liauscore">0</td>
+                        <td class="coleman_liauscorediff">-</td>
+                    </tr>
+                    <tr>
+                        <td>ARI</td>
+                        <td class="ariscore">0</td>
+                        <td class="ariscorediff">-</td>
+                    </tr>
                 </table>
             </div>
         </div>
         <br>
         <h3>Bibliographie indicative</h3>
         <ul>
-            <li>Benoît J.-P. (1986). "<a href="https://doi.org/10.3406/prati.1986.1409">Revue critique des formules de lisibilité (60 ans de formules de lisibilité : qu'en reste-t-il ?)</a>".</li>
-            <li>Conquet A., Richaudeau F. (1973). "<a href="https://doi.org/10.3406/colan.1973.3978">Cinq méthodes de mesure de la lisibilité</a>".</li>
-            <li>De Landsheere, G. (1963). "<a href="http://www.jstor.org/stable/40659295">Pour une application des tests de lisibilité de Flesch à la langue française</a>"</li>
-            <li>Henry G. (1980). "<a href ="https://doi.org/10.3406/colan.1980.1364">Lisibilité et compréhension</a>".</li>
-            <li>Labasse B. (1999). "<a href="https://doi.org/10.3406/colan.1999.2951">La lisibilité rédactionnelle : fondements et perspectives</a>".</li>
-            <li>Le Maux, J. (2015). "<a href = "https://doi.org/10.3917/rfla.202.0099">La lisibilité de l’information financière</a>".</li>
-            <li>Mesnager J. (1989). "<a href="https://doi.org/10.3406/colan.1989.1081"> Lisibilité des textes pour enfants : un nouvel outil ?</a></li>
-            <li>Richaudeau F. (1976). "<a href="https://doi.org/10.3406/colan.1976.4293">Faut-il brûler les formules de lisibilité ?</a>".</li>
+            <li>Benoît J.-P. (1986). "<a href="https://doi.org/10.3406/prati.1986.1409">Revue critique des formules de
+                    lisibilité (60 ans de formules de lisibilité : qu'en reste-t-il ?)</a>".</li>
+            <li>Conquet A., Richaudeau F. (1973). "<a href="https://doi.org/10.3406/colan.1973.3978">Cinq méthodes de
+                    mesure de la lisibilité</a>".</li>
+            <li>De Landsheere, G. (1963). "<a href="http://www.jstor.org/stable/40659295">Pour une application des tests
+                    de lisibilité de Flesch à la langue française</a>"</li>
+            <li>Henry G. (1980). "<a href="https://doi.org/10.3406/colan.1980.1364">Lisibilité et compréhension</a>".
+            </li>
+            <li>Labasse B. (1999). "<a href="https://doi.org/10.3406/colan.1999.2951">La lisibilité rédactionnelle :
+                    fondements et perspectives</a>".</li>
+            <li>Le Maux, J. (2015). "<a href="https://doi.org/10.3917/rfla.202.0099">La lisibilité de l’information
+                    financière</a>".</li>
+            <li>Mesnager J. (1989). "<a href="https://doi.org/10.3406/colan.1989.1081"> Lisibilité des textes pour
+                    enfants : un nouvel outil ?</a></li>
+            <li>Richaudeau F. (1976). "<a href="https://doi.org/10.3406/colan.1976.4293">Faut-il brûler les formules de
+                    lisibilité ?</a>".</li>
         </ul>
 
-        <p style="color:#2bbc8a;text-align: center;"> Voir le projet sur 
-            <a href="https://github.com/filkat34/readability-scores" target="_blank"> <img src="https://skillicons.dev/icons?i=github" alt="Github" 
-                width="32" height="32"/></a>
+        <p style="color:#2bbc8a;text-align: center;"> Voir le projet sur
+            <a href="https://github.com/filkat34/readability-scores" target="_blank"> <img
+                    src="https://skillicons.dev/icons?i=github" alt="Github" width="32" height="32" /></a>
         </p>
-        </div>
-    </body>
-    <Script>
+    </div>
+</body>
+<Script>
 
     // Text analysis functions with Regex :
 
     function nbCaracteres(str) {
-            str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
-            let regex = /(\w)/gi;
-            return str.match(regex).length;
+        str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
+        let regex = /(\w)/gi;
+        return str.match(regex).length;
     }
 
     function nbVoyelles(str) {
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
         let regex = /[aeiouœ]/gi;
         let voyelles = str.match(regex)
-        if(voyelles==null){
+        if (voyelles == null) {
             voyelles = 0
         }
-        else{
+        else {
             voyelles = str.match(regex).length
         }
         return voyelles;
@@ -282,10 +300,10 @@
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
         let regex = /(au)|(eu)|(ou)|(oi)|(œu)|(ei)|(ai)|(ee)|(ue)|(ui)|(ua)/gi;
         let digrammes = str.match(regex);
-        if(digrammes==null){
+        if (digrammes == null) {
             digrammes = 0
         }
-        else{
+        else {
             digrammes = str.match(regex).length
         }
         return digrammes;
@@ -295,27 +313,27 @@
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
         let regex = /(eau)|(oue)|(aie)/gi;
         let trigrammes = str.match(regex)
-        if(trigrammes==null){
+        if (trigrammes == null) {
             trigrammes = 0;
         }
-        else{
+        else {
             trigrammes = str.match(regex).length
         }
         return trigrammes;
     }
 
     function nbSyllabesGraphiques(str) {
-        return nbVoyelles(str) - (nbDigrammes(str)+nbTrigrammes(str));
+        return nbVoyelles(str) - (nbDigrammes(str) + nbTrigrammes(str));
     }
 
     function nbMots(str) {
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
         let regex = /(\w+)/gi;
         let mots = str.match(regex)
-        if(mots==null){
+        if (mots == null) {
             mots = 0
         }
-        else{
+        else {
             mots = str.match(regex).length
         }
         return mots;
@@ -326,11 +344,11 @@
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "").replace(punctuation, "").replace("  ", " ");
         let mots = str.split(' ');
         let motsPolysyllabiques = 0;
-        for (const mot in mots){
-            if (nbSyllabesGraphiques(mots[mot])>=3){
-            motsPolysyllabiques++;
-        }
+        for (const mot in mots) {
+            if (nbSyllabesGraphiques(mots[mot]) >= 3) {
+                motsPolysyllabiques++;
             }
+        }
         return motsPolysyllabiques
     }
 
@@ -338,22 +356,22 @@
         str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
         let regex = /(\w{7,})/g;
         let motsLongs = str.match(regex);
-        if(motsLongs==null){
+        if (motsLongs == null) {
             motsLongs = 0;
         }
-        else{
+        else {
             motsLongs = str.match(regex).length;
         }
         return motsLongs;
     }
 
-    function nbPhrases(str){
+    function nbPhrases(str) {
         let regex = /\w\w+\.|!|\?/gi;
         let phrases = str.match(regex);
-        if(phrases==0){
+        if (phrases == 0) {
             phrases = 1;
         }
-        else{
+        else {
             phrases = str.match(regex).length;
         }
         return phrases;
@@ -362,71 +380,71 @@
 
     // Readability formulas functions :
 
-    function scoreLix(str){
-        return nbMots(str)/nbPhrases(str)+100*(nbMotsLongs(str)/nbMots(str));
+    function scoreLix(str) {
+        return nbMots(str) / nbPhrases(str) + 100 * (nbMotsLongs(str) / nbMots(str));
     }
 
-    function scoreRix(str){
-        return nbMotsLongs(str)/nbPhrases(str);
+    function scoreRix(str) {
+        return nbMotsLongs(str) / nbPhrases(str);
     }
 
-    function scoreFkgl(str){
-        return 0.39*(nbMots(str)/nbPhrases(str))+11.8*(nbSyllabesGraphiques(str)/nbMots(str))-15.59;
+    function scoreFkgl(str) {
+        return 0.39 * (nbMots(str) / nbPhrases(str)) + 11.8 * (nbSyllabesGraphiques(str) / nbMots(str)) - 15.59;
     }
 
-    function scoreGunningFog(str){
-        return 0.4*(nbMots(str)/nbPhrases(str)+100*(nbMotsPolysyllabiques(str)/nbMots(str)));
+    function scoreGunningFog(str) {
+        return 0.4 * (nbMots(str) / nbPhrases(str) + 100 * (nbMotsPolysyllabiques(str) / nbMots(str)));
     }
 
-    function scoreSMOG(str){
-        return 1.043*Math.sqrt((nbMotsPolysyllabiques(str)*(30/nbPhrases(str))))+3.1291;
+    function scoreSMOG(str) {
+        return 1.043 * Math.sqrt((nbMotsPolysyllabiques(str) * (30 / nbPhrases(str)))) + 3.1291;
     }
 
-    function scoreColemanLiau(str){
-        return 0.0588*((nbCaracteres(str)/nbMots(str))*100)-0.296*((nbPhrases(str)/nbMots(str))*100)-15.8;
+    function scoreColemanLiau(str) {
+        return 0.0588 * ((nbCaracteres(str) / nbMots(str)) * 100) - 0.296 * ((nbPhrases(str) / nbMots(str)) * 100) - 15.8;
     }
 
-    function scoreAri(str){
-        return 4.71*(nbCaracteres(str)/nbMots(str))+0.5*(nbMots(str)/nbPhrases(str))-21.43;
+    function scoreAri(str) {
+        return 4.71 * (nbCaracteres(str) / nbMots(str)) + 0.5 * (nbMots(str) / nbPhrases(str)) - 21.43;
     }
 
     // Readability scores analysis function :
 
-    function scoreAnalysis(formula, score){
-            let formula_scales = [['lix',59,50,40,30],
-                            ['rix',7.1,5.3,2.9,1.8],
-                            ['fkgl',15,12,5,1],
-                            ['gunning',17,13,7,1],
-                            ['smog',14,12,7,1],
-                            ['ari',15,9,5,1],
-                            ['coleman_liau',15,9,5,1]
-                            ]
-            for (let column in formula_scales) {
-                for (let row in formula_scales) {
-                if (formula_scales[column][row] == formula){
-                    if (score > formula_scales[column][1]){
+    function scoreAnalysis(formula, score) {
+        let formula_scales = [['lix', 59, 50, 40, 30],
+        ['rix', 7.1, 5.3, 2.9, 1.8],
+        ['fkgl', 15, 12, 5, 1],
+        ['gunning', 17, 13, 7, 1],
+        ['smog', 14, 12, 7, 1],
+        ['ari', 15, 9, 5, 1],
+        ['coleman_liau', 15, 9, 5, 1]
+        ]
+        for (let column in formula_scales) {
+            for (let row in formula_scales) {
+                if (formula_scales[column][row] == formula) {
+                    if (score > formula_scales[column][1]) {
                         return "🔴 Très difficile";
                     }
-                    if (score > formula_scales[column][2]){
+                    if (score > formula_scales[column][2]) {
                         return "🟠 Difficile";
                     }
-                    if (score > formula_scales[column][3]){
+                    if (score > formula_scales[column][3]) {
                         return "🟡 Intermédiaire";
                     }
-                    if (score > formula_scales[column][4]){
+                    if (score > formula_scales[column][4]) {
                         return "🟢 Facile";
                     }
                     return "⚪️ Très facile";
-                        }
-                        }
-                    }
+                }
+            }
         }
+    }
 
     // Events functions
 
     function scoreTextFile() {
-        const caracteres = document.querySelector(".caracteres") ;
-        const voyelles = document.querySelector(".voyelles") ;
+        const caracteres = document.querySelector(".caracteres");
+        const voyelles = document.querySelector(".voyelles");
         const digrammes = document.querySelector(".digrammes");
         const trigrammes = document.querySelector(".trigrammes");
         const syllabes = document.querySelector(".syllabes");
@@ -457,31 +475,31 @@
         reader.addEventListener(
             "load",
             () => {
-            caracteres.innerText =nbCaracteres(reader.result);
-            voyelles.innerText=nbVoyelles(reader.result);
-            digrammes.innerText=nbDigrammes(reader.result);
-            trigrammes.innerText=nbTrigrammes(reader.result);
-            syllabes.innerText=nbSyllabesGraphiques(reader.result);
-            mots.innerText=nbMots(reader.result);
-            motslongs.innerText=nbMotsLongs(reader.result);
-            motspolysyllabiques.innerText=nbMotsPolysyllabiques(reader.result);
-            phrases.innerText=nbPhrases(reader.result);
+                caracteres.innerText = nbCaracteres(reader.result);
+                voyelles.innerText = nbVoyelles(reader.result);
+                digrammes.innerText = nbDigrammes(reader.result);
+                trigrammes.innerText = nbTrigrammes(reader.result);
+                syllabes.innerText = nbSyllabesGraphiques(reader.result);
+                mots.innerText = nbMots(reader.result);
+                motslongs.innerText = nbMotsLongs(reader.result);
+                motspolysyllabiques.innerText = nbMotsPolysyllabiques(reader.result);
+                phrases.innerText = nbPhrases(reader.result);
 
-            lix.innerText = scoreLix(reader.result).toFixed(2);
-            rix.innerText = scoreRix(reader.result).toFixed(2);
-            fkgl.innerText= scoreFkgl(reader.result).toFixed(2);
-            gunningFog.innerText= scoreGunningFog(reader.result).toFixed(2);
-            smog.innerText= scoreSMOG(reader.result).toFixed(2);
-            colemanliau.innerText= scoreColemanLiau(reader.result).toFixed(2);
-            ari.innerText= scoreAri(reader.result).toFixed(2);
+                lix.innerText = scoreLix(reader.result).toFixed(2);
+                rix.innerText = scoreRix(reader.result).toFixed(2);
+                fkgl.innerText = scoreFkgl(reader.result).toFixed(2);
+                gunningFog.innerText = scoreGunningFog(reader.result).toFixed(2);
+                smog.innerText = scoreSMOG(reader.result).toFixed(2);
+                colemanliau.innerText = scoreColemanLiau(reader.result).toFixed(2);
+                ari.innerText = scoreAri(reader.result).toFixed(2);
 
-            lixdiff.innerText = scoreAnalysis('lix', scoreLix(reader.result));
-            rixdiff.innerText = scoreAnalysis('rix', scoreRix(reader.result));
-            fkgldiff.innerText = scoreAnalysis('fkgl', scoreFkgl(reader.result));
-            gunningFogdiff.innerText = scoreAnalysis('gunning', scoreGunningFog(reader.result));
-            smogdiff.innerText = scoreAnalysis('smog', scoreSMOG(reader.result));
-            colemanliaudiff.innerText = scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
-            aridiff.innerText = scoreAnalysis('ari', scoreAri(reader.result));
+                lixdiff.innerText = scoreAnalysis('lix', scoreLix(reader.result));
+                rixdiff.innerText = scoreAnalysis('rix', scoreRix(reader.result));
+                fkgldiff.innerText = scoreAnalysis('fkgl', scoreFkgl(reader.result));
+                gunningFogdiff.innerText = scoreAnalysis('gunning', scoreGunningFog(reader.result));
+                smogdiff.innerText = scoreAnalysis('smog', scoreSMOG(reader.result));
+                colemanliaudiff.innerText = scoreAnalysis('coleman_liau', scoreColemanLiau(reader.result));
+                aridiff.innerText = scoreAnalysis('ari', scoreAri(reader.result));
             },
             false,
         );
@@ -491,9 +509,9 @@
         }
     }
 
-    function scoreTextArea(){
-        const caracteres = document.querySelector(".caracteres") ;
-        const voyelles = document.querySelector(".voyelles") ;
+    function scoreTextArea() {
+        const caracteres = document.querySelector(".caracteres");
+        const voyelles = document.querySelector(".voyelles");
         const digrammes = document.querySelector(".digrammes");
         const trigrammes = document.querySelector(".trigrammes");
         const syllabes = document.querySelector(".syllabes");
@@ -520,22 +538,22 @@
         const aridiff = document.querySelector(".ariscorediff");
 
         caracteres.innerText = nbCaracteres(inputText);
-        voyelles.innerText= nbVoyelles(inputText);
-        digrammes.innerText= nbDigrammes(inputText);
-        trigrammes.innerText= nbTrigrammes(inputText);
-        syllabes.innerText= nbSyllabesGraphiques(inputText);
-        mots.innerText= nbMots(inputText);
-        motslongs.innerText= nbMotsLongs(inputText);
-        motspolysyllabiques.innerText= nbMotsPolysyllabiques(inputText);
-        phrases.innerText= nbPhrases(inputText);
+        voyelles.innerText = nbVoyelles(inputText);
+        digrammes.innerText = nbDigrammes(inputText);
+        trigrammes.innerText = nbTrigrammes(inputText);
+        syllabes.innerText = nbSyllabesGraphiques(inputText);
+        mots.innerText = nbMots(inputText);
+        motslongs.innerText = nbMotsLongs(inputText);
+        motspolysyllabiques.innerText = nbMotsPolysyllabiques(inputText);
+        phrases.innerText = nbPhrases(inputText);
 
         lix.innerText = scoreLix(inputText).toFixed(2);
         rix.innerText = scoreRix(inputText).toFixed(2);
-        fkgl.innerText= scoreFkgl(inputText).toFixed(2);
-        gunningFog.innerText= scoreGunningFog(inputText).toFixed(2);
-        smog.innerText= scoreSMOG(inputText).toFixed(2);
-        colemanliau.innerText= scoreColemanLiau(inputText).toFixed(2);
-        ari.innerText= scoreAri(inputText).toFixed(2);
+        fkgl.innerText = scoreFkgl(inputText).toFixed(2);
+        gunningFog.innerText = scoreGunningFog(inputText).toFixed(2);
+        smog.innerText = scoreSMOG(inputText).toFixed(2);
+        colemanliau.innerText = scoreColemanLiau(inputText).toFixed(2);
+        ari.innerText = scoreAri(inputText).toFixed(2);
 
         lixdiff.innerText = scoreAnalysis('lix', scoreLix(inputText));
         rixdiff.innerText = scoreAnalysis('rix', scoreRix(inputText));
@@ -545,5 +563,6 @@
         colemanliaudiff.innerText = scoreAnalysis('coleman_liau', scoreColemanLiau(inputText));
         aridiff.innerText = scoreAnalysis('ari', scoreAri(inputText));
     }
-    </Script>
+</Script>
+
 </html>
