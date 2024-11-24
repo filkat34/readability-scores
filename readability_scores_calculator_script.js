@@ -89,7 +89,7 @@ function nbMotsLongs(str) {
 }
 
 function nbPhrases(str) {
-    let regex = /\w\w+\.|!|\?/gi;
+    let regex = /..\.|!|\?/gi;
     let phrases = str.match(regex);
     if (phrases == null) {
         phrases = 1;

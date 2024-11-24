@@ -366,7 +366,7 @@
     }
 
     function nbPhrases(str) {
-        let regex = /\w\w+\.|!|\?/gi;
+        let regex = /..\.|!|\?/gi;
         let phrases = str.match(regex);
         if (phrases == 0) {
             phrases = 1;
