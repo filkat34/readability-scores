@@ -2,7 +2,7 @@
 
 ## Objectif 
 
-L'objectif de ce programme est de permettre, à partir d'un texte saisi ou d'un fichier en texte brut (.txt), le calcul de six scores de lisibilité :
+L'objectif de ce programme est de permettre, à partir d'un texte saisi ou d'un fichier en texte brut (.txt), le calcul de sept scores de lisibilité :
 
 * LIX 
 * RIX

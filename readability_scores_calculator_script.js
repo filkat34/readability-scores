@@ -1,5 +1,4 @@
 // Text analysis functions with Regex :
-
 function nbCaracteres(str) {
     str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
     let regex = /(\w)/gi;
@@ -9,12 +8,11 @@ function nbCaracteres(str) {
 function nbVoyelles(str) {
     str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
     let regex = /[aeiouœ]/gi;
-    let voyelles = str.match(regex)
-    if (voyelles == null) {
-        voyelles = 0
-    }
-    else {
-        voyelles = str.match(regex).length
+    let voyelles = str.match(regex);
+    if (voyelles === null) {
+        voyelles = 0;
+    } else {
+        voyelles = str.match(regex).length;
     }
     return voyelles;
 }
@@ -23,11 +21,10 @@ function nbDigrammes(str) {
     str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
     let regex = /(au)|(eu)|(ou)|(oi)|(œu)|(ei)|(ai)|(ee)|(ue)|(ui)|(ua)/gi;
     let digrammes = str.match(regex);
-    if (digrammes == null) {
-        digrammes = 0
-    }
-    else {
-        digrammes = str.match(regex).length
+    if (digrammes === null) {
+        digrammes = 0;
+    } else {
+        digrammes = str.match(regex).length;
     }
     return digrammes;
 }
@@ -36,11 +33,10 @@ function nbTrigrammes(str) {
     str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
     let regex = /(eau)|(oue)|(aie)/gi;
     let trigrammes = str.match(regex)
-    if (trigrammes == null) {
+    if (trigrammes === null) {
         trigrammes = 0;
-    }
-    else {
-        trigrammes = str.match(regex).length
+    } else {
+        trigrammes = str.match(regex).length;
     }
     return trigrammes;
 }
@@ -53,11 +49,10 @@ function nbMots(str) {
     str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
     let regex = /(\w+)/gi;
     let mots = str.match(regex)
-    if (mots == null) {
-        mots = 0
-    }
-    else {
-        mots = str.match(regex).length
+    if (mots === null) {
+        mots = 0;
+    } else {
+        mots = str.match(regex).length;
     }
     return mots;
 }
@@ -72,17 +67,16 @@ function nbMotsPolysyllabiques(str) {
             motsPolysyllabiques++;
         }
     }
-    return motsPolysyllabiques
+    return motsPolysyllabiques;
 }
 
 function nbMotsLongs(str) {
     str = str.normalize("NFD").replace(/[\u0300-\u036f]/gi, "");
     let regex = /(\w{7,})/g;
     let motsLongs = str.match(regex);
-    if (motsLongs == null) {
+    if (motsLongs === null) {
         motsLongs = 0;
-    }
-    else {
+    } else {
         motsLongs = str.match(regex).length;
     }
     return motsLongs;
@@ -91,10 +85,9 @@ function nbMotsLongs(str) {
 function nbPhrases(str) {
     let regex = /..\.|!|\?/gi;
     let phrases = str.match(regex);
-    if (phrases == null) {
+    if (phrases === 0) {
         phrases = 1;
-    }
-    else {
+    } else {
         phrases = str.match(regex).length;
     }
     return phrases;
@@ -131,7 +124,7 @@ function scoreAri(str) {
     return 4.71 * (nbCaracteres(str) / nbMots(str)) + 0.5 * (nbMots(str) / nbPhrases(str)) - 21.43;
 }
 
-// Readability scores analysis function :
+// Readability scores analysis function
 
 function scoreAnalysis(formula, score) {
     let formula_scales = [['lix', 59, 50, 40, 30],
@@ -144,20 +137,20 @@ function scoreAnalysis(formula, score) {
     ]
     for (let column in formula_scales) {
         for (let row in formula_scales) {
-            if (formula_scales[column][row] == formula) {
+            if (formula_scales[column][row] === formula) {
                 if (score > formula_scales[column][1]) {
-                    return "🔴 Très difficile";
+                    return "Très difficile";
                 }
                 if (score > formula_scales[column][2]) {
-                    return "🟠 Difficile";
+                    return "Difficile";
                 }
                 if (score > formula_scales[column][3]) {
-                    return "🟡 Intermédiaire";
+                    return "Intermédiaire";
                 }
                 if (score > formula_scales[column][4]) {
-                    return "🟢 Facile";
+                    return "Facile";
                 }
-                return "⚪️ Très facile";
+                return "Très facile";
             }
         }
     }
